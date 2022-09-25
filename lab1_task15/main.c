@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "./strucure.c"
+#include "./structure.c"
 
 // Assuming that words are not longer than 128 characters
 #define MAX_WORD_LENGTH 128
