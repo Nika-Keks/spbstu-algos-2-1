@@ -14,7 +14,7 @@ typedef struct List {
 List* NewList(char* word, int number)
 {
 	List* list;
-	if (!(list = (List*)malloc(2 * sizeof(List))))
+	if (!(list = (List*)malloc(sizeof(List))))
 	{
 		printf("Allocation error.");
 		exit(1);
@@ -49,15 +49,9 @@ List* InsertList(List* current, List* list)
 				break;
 			}
 			else if (list->number == ptr->next->number)
-			{
-				if (strcmp(list->word, ptr->next->word) == 0)
-				{
-					printf("The same words correspond to the same key numbers");
-					exit(1);
-				}
-				list->next = ptr->next;
-				ptr->next = list;
-				break;
+			{				
+				printf("Words correspond to the same key numbers");
+				exit(1);								
 			}
 			ptr = ptr->next;
 		}
