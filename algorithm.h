@@ -5,17 +5,17 @@
 #include <math.h>
 #include <string.h>
 #include <malloc.h>
-#include "./structure.c"
+#include "./structure.h"
 
 int Number_lines();
-Array_Data_Creation(int lines_count, char** array);
-Array_Words_Creation(char** array, int lines_count, char** arr_words);
-Array_Numbers_String(char** array, int lines_count, char** arr_numbers);
-Array_Numbers_Int(int* arr_numbers_int, char** arr_numbers, int lines_count);
-Sort(int* arr_numbers_int, char** arr_numbers, int lines_count, char** arr_words);
-Create_And_Print_List(char** arr_words, char** arr_numbers, int lines_count);
-Check_Word(char word[], char** arr_words, int lines_count, char** arr_numbers);
-Check_Number(char number[], char** arr_words, int lines_count, char** arr_numbers);
+void Array_Data_Creation(int lines_count, char** array);
+void Array_Words_Creation(char** array, int lines_count, char** arr_words);
+void Array_Numbers_String(char** array, int lines_count, char** arr_numbers);
+void Array_Numbers_Int(int* arr_numbers_int, char** arr_numbers, int lines_count);
+void Sort(int* arr_numbers_int, char** arr_numbers, int lines_count, char** arr_words);
+void Create_And_Print_List(char** arr_words, char** arr_numbers, int lines_count);
+void Check_Word(char word[], char** arr_words, int lines_count, char** arr_numbers);
+void Check_Number(char number[], char** arr_words, int lines_count, char** arr_numbers);
 
 //function description
 
@@ -25,7 +25,7 @@ int Number_lines()
 	FILE* file = fopen("spisok.txt", "r");
 	if (file == NULL)
 	{
-		printf("File is empty.\n");
+	    printf("File is empty.\n");
 	}
 	else
 	{
@@ -40,7 +40,7 @@ int Number_lines()
 	}
 }
 
-Array_Data_Creation(int lines_count, char** array)
+void Array_Data_Creation(int lines_count, char** array)
 {
 	FILE* file = fopen("spisok.txt", "r");
 	char line[40];
@@ -52,16 +52,15 @@ Array_Data_Creation(int lines_count, char** array)
 	for (int i = 0; i < lines_count; i++)
 	{
 		fgets(line, 40, file);
-		for (j = 0; j < 40; j++)
-		{
-			array[i][j] = line[j];
-		}
+
+		memcpy(array[i], line, 40);	
+
 		memset(line, 0, strlen(line));
 		j = 0;
 	}
 }
 
-Array_Words_Creation(char** array, int lines_count, char** arr_words)
+void Array_Words_Creation(char** array, int lines_count, char** arr_words)
 {
 
 
@@ -83,7 +82,7 @@ Array_Words_Creation(char** array, int lines_count, char** arr_words)
 	}
 }
 
-Array_Numbers_String(char** array, int lines_count, char** arr_numbers)
+void Array_Numbers_String(char** array, int lines_count, char** arr_numbers)
 {
 	int j_2 = 0;
 	for (int q = 0; q < lines_count; q++)
@@ -116,7 +115,7 @@ Array_Numbers_String(char** array, int lines_count, char** arr_numbers)
 	}
 }
 
-Array_Numbers_Int(int* arr_numbers_int, char** arr_numbers, int lines_count)
+void Array_Numbers_Int(int* arr_numbers_int, char** arr_numbers, int lines_count)
 {
 	for (int q = 0; q < lines_count; q++)
 	{
@@ -129,7 +128,7 @@ Array_Numbers_Int(int* arr_numbers_int, char** arr_numbers, int lines_count)
 	}
 }
 
-Sort(int* arr_numbers_int, char** arr_numbers, int lines_count, char** arr_words)
+void Sort(int* arr_numbers_int, char** arr_numbers, int lines_count, char** arr_words)
 {
 	char str[40];
 	int cont = 0;
@@ -217,7 +216,7 @@ Sort(int* arr_numbers_int, char** arr_numbers, int lines_count, char** arr_words
 	}
 }
 
-Create_And_Print_List(char** arr_words, char** arr_numbers, int lines_count)
+void Create_And_Print_List(char** arr_words, char** arr_numbers, int lines_count)
 {
 	t_List* List = create_node(arr_words[lines_count], arr_numbers[lines_count]);
 
@@ -235,7 +234,7 @@ Create_And_Print_List(char** arr_words, char** arr_numbers, int lines_count)
 	}
 }
 
-Check_Word(char word[], char** arr_words, int lines_count, char** arr_numbers)
+void Check_Word(char word[], char** arr_words, int lines_count, char** arr_numbers)
 {
 	int k = 0;
 
@@ -254,7 +253,7 @@ Check_Word(char word[], char** arr_words, int lines_count, char** arr_numbers)
 
 }
 
-Check_Number(char number[], char** arr_words, int lines_count, char** arr_numbers)
+void Check_Number(char number[], char** arr_words, int lines_count, char** arr_numbers)
 {
 	int k = 0;
 
@@ -266,7 +265,7 @@ Check_Number(char number[], char** arr_words, int lines_count, char** arr_number
 			if (k <= 1)
 				printf("\nSuch a number exists. His words: %s\n", arr_words[i]);
 			if (k > 1)
-				printf("                                             %s\n", arr_words[i]);
+				printf("                                 %s\n", arr_words[i]);
 		}
 	}
 
