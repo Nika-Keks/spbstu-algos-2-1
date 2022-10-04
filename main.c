@@ -5,7 +5,7 @@
 #include <math.h>
 #include <string.h>
 #include <malloc.h>
-#include "./algorithm.c"
+#include "./algorithm.h"
 
 int main()
 {
@@ -31,13 +31,13 @@ int main()
 	Create_And_Print_List(arr_words, arr_numbers, lines_count);
 
 	char word[40];
-	printf("Введите слово: ");
+	printf("Р’РІРµРґРёС‚Рµ СЃР»РѕРІРѕ: ");
 	scanf("%s", &word);
 
 	Check_Word(word, arr_words, lines_count, arr_numbers);
 
 	char number[40];
-	printf("Введите число: ");
+	printf("Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ: ");
 	scanf("%s", &number);
 
 	Check_Number(number, arr_words, lines_count, arr_numbers);
