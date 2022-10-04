@@ -7,6 +7,7 @@
 #include <malloc.h>
 
 
+
 typedef struct s_List
 {
 	char* word;
@@ -34,6 +35,7 @@ void push_front(t_List** list, char* set_word, char* set_number)
 	new_element->next = *list;
 	*list = new_element;
 }
+
 
 
 
