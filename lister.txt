@@ -1,0 +1,16 @@
+Apple 23
+
+Wood 45
+
+weather 10
+
+
+elementary 120
+
+History 125
+language 05
+Worker 47
+Gap 0
+
+coach 3400
+
