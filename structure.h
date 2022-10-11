@@ -1,44 +1,18 @@
-#pragma warning(disable : 4996)
-#include <stdio.h>
-#include <locale.h>
-#include <stdlib.h>
-#include <math.h>
-#include <string.h>
-#include <malloc.h>
-
-
-
-typedef struct s_List
+#pragma once
+typedef struct list
 {
 	char* word;
-	char* number;
+	int number;
+	struct list* next;
+}list;
 
-	struct s_List* next;
-
-}t_List;
-
-t_List* create_node(char* set_word, char* set_number)
-{
-	t_List* node = (t_List*)malloc(sizeof(t_List));
-	node->word = set_word;
-	node->number = set_number;
-	node->next = NULL;
-
-	return node;
-
-}
-
-void push_front(t_List** list, char* set_word, char* set_number)
-{
-	t_List* new_element = create_node(set_word, set_number);
-
-	new_element->next = *list;
-	*list = new_element;
-}
-
-
-
-
-
-
-
+list* Create_Node(char* word, int number);
+list* Create_Node_From_File(FILE* file, char* format);
+list* Insert(list* list_1, list* list_2);
+list* Create_List_From_File(FILE* file);
+void Print_List(list* head);
+list* Combine_Words_List(list* head);
+void Checkword(list* head, char word[]);
+void SearchWords(list* head, int num);
+void Sort_And_Search(FILE* file);
+void Push_Back(list* list, char* set_word, int set_number);
