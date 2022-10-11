@@ -1,275 +1,204 @@
 #pragma warning(disable : 4996)
 #include <stdio.h>
-#include <locale.h>
-#include <stdlib.h>
-#include <math.h>
-#include <string.h>
 #include <malloc.h>
-#include "./structure.h"
+#include "struct.h"
+#define LINE_LENGTH 40
 
-int Number_lines();
-void Array_Data_Creation(int lines_count, char** array);
-void Array_Words_Creation(char** array, int lines_count, char** arr_words);
-void Array_Numbers_String(char** array, int lines_count, char** arr_numbers);
-void Array_Numbers_Int(int* arr_numbers_int, char** arr_numbers, int lines_count);
-void Sort(int* arr_numbers_int, char** arr_numbers, int lines_count, char** arr_words);
-void Create_And_Print_List(char** arr_words, char** arr_numbers, int lines_count);
-void Check_Word(char word[], char** arr_words, int lines_count, char** arr_numbers);
-void Check_Number(char number[], char** arr_words, int lines_count, char** arr_numbers);
-
-//function description
-
-int Number_lines()
+list* Create_Node(char* word, int number)
 {
-	int lines_count = 0;
-	FILE* file = fopen("spisok.txt", "r");
-	if (file == NULL)
-	{
-	    printf("File is empty.\n");
-	}
-	else
-	{
-		while (!feof(file))
-		{
-			if (fgetc(file) == '\n')
-				lines_count++;
-		}
-		lines_count++;
-		fclose(file);
-		return lines_count;
-	}
+	list* node = (list*)malloc(sizeof(list));
+	node->word = word;
+	node->number = number;
+	node->next = NULL;
+	return node;
+
 }
 
-void Array_Data_Creation(int lines_count, char** array)
+list* Create_Node_From_File(FILE* file, char* format)
 {
-	FILE* file = fopen("spisok.txt", "r");
-	char line[40];
-	int j = 0;
-	for (int k = 0; k < lines_count; k++)
-	{
-		array[k] = (char*)malloc(sizeof(char) * 40);
-	}
-	for (int i = 0; i < lines_count; i++)
-	{
-		fgets(line, 40, file);
+	int number;
+	char* word = malloc(LINE_LENGTH * sizeof(char));
 
-		memcpy(array[i], line, 40);	
+	if (fscanf(file, format, word, &number) != EOF)
+		return Create_Node(word, number);
 
-		memset(line, 0, strlen(line));
-		j = 0;
-	}
+	return NULL;
 }
 
-void Array_Words_Creation(char** array, int lines_count, char** arr_words)
+list* Insert(list* list_1, list* list_2)
 {
 
-
-	int j_1 = 0;
-	for (int q = 0; q < lines_count; q++)
+	list* sup = list_1;
+	if (strcmp(list_2->word, sup->word) < 0)
 	{
-		arr_words[q] = (char*)malloc(sizeof(char) * 40);
+		list_2->next = sup;
+		return list_2;
 	}
-	for (int i_1 = 0; i_1 < lines_count; i_1++)
+	while (sup != NULL)
 	{
-		while (array[i_1][j_1] != ' ')
+		if (sup->next == NULL)
 		{
-			arr_words[i_1][j_1] = array[i_1][j_1];
-			j_1++;
-
-		}
-		arr_words[i_1][j_1] = '\0';
-		j_1 = 0;
-	}
-}
-
-void Array_Numbers_String(char** array, int lines_count, char** arr_numbers)
-{
-	int j_2 = 0;
-	for (int q = 0; q < lines_count; q++)
-	{
-		arr_numbers[q] = (char*)malloc(sizeof(char) * 40);
-	}
-	int f;
-	int i_3 = 0;
-	char num;
-	for (int i_2 = 0; i_2 < lines_count; i_2++)
-	{
-		f = 0;
-		while (array[i_2][f] != '\0')
-		{
-			f++;
-		}
-		while (array[i_2][f - 1 - i_3] != ' ')
-		{
-			i_3++;
-		}
-		while (array[i_2][f - j_2 - 1] != ' ')
-		{
-			arr_numbers[i_2][j_2] = array[i_2][f + j_2 - i_3];
-			j_2++;
-
-		}
-		arr_numbers[i_2][j_2] = '\0';
-		j_2 = 0;
-		i_3 = 0;
-	}
-}
-
-void Array_Numbers_Int(int* arr_numbers_int, char** arr_numbers, int lines_count)
-{
-	for (int q = 0; q < lines_count; q++)
-	{
-		arr_numbers_int[q] = (int*)malloc(sizeof(int) * 40);
-	}
-	for (int i_4 = 0; i_4 < lines_count; i_4++)
-	{
-
-		arr_numbers_int[i_4] = atoi(arr_numbers[i_4]);
-	}
-}
-
-void Sort(int* arr_numbers_int, char** arr_numbers, int lines_count, char** arr_words)
-{
-	char str[40];
-	int cont = 0;
-	for (int i_5 = 1; i_5 < lines_count; i_5++)
-	{
-		for (int j_5 = 0; j_5 < lines_count - i_5; j_5++)
-		{
-			if (strcmp(arr_words[j_5], arr_words[j_5 + 1]) > 0)
-			{
-				strcpy(str, arr_words[j_5]);
-				cont = arr_numbers_int[j_5];
-
-				strcpy(arr_words[j_5], arr_words[j_5 + 1]);
-				arr_numbers_int[j_5] = arr_numbers_int[j_5 + 1];
-
-				strcpy(arr_words[j_5 + 1], str);
-				arr_numbers_int[j_5 + 1] = cont;
-
-			}
-		}
-
-	}
-
-	int s_1 = 0;
-	int k_1 = 0;
-	int u_1 = 0;
-	int p_1 = 0;
-	int p_2 = 0;
-
-	for (u_1 = 0; u_1 < lines_count; u_1++)
-	{
-		if (strcmp(arr_words[u_1], "") != 0)
-		{
-			if (strcmp(arr_words[u_1], arr_words[u_1 + 1]) == 0)
-			{
-				k_1 = u_1;
-				while (strcmp(arr_words[k_1], arr_words[k_1 + 1]) == 0)
-				{
-					s_1++;
-					k_1++;
-				}
-				p_1 = 0;
-				while (p_1 < s_1)
-				{
-					for (int g_1 = u_1; g_1 < lines_count - 1; g_1++)
-					{
-						for (int r_1 = 0; r_1 < 20; r_1++)
-						{
-							arr_words[g_1][r_1] = arr_words[g_1 + 1][r_1];
-						}
-					}
-
-					arr_numbers_int[u_1] += arr_numbers_int[u_1 + 1];
-					for (int g_1_1 = u_1 + 1; g_1_1 < lines_count - 1; g_1_1++)
-					{
-
-
-						arr_numbers_int[g_1_1] = arr_numbers_int[g_1_1 + 1];
-
-					}
-
-					p_1++;
-					memset(arr_words[lines_count - p_1], 0, strlen(arr_words[lines_count - p_1]));
-					arr_numbers_int[lines_count - p_1] = 0;
-
-				}
-			}
-		}
-		s_1 = 0;
-		k_1 = 0;
-		p_1 = 0;
-	}
-
-	
-	for (int i_6 = 0; i_6 < lines_count; i_6++)
-	{
-
-		itoa(arr_numbers_int[i_6], arr_numbers[i_6], 10);
-
-	}
-	for (int i_6 = 0; i_6 < lines_count; i_6++)
-	{
-		if (arr_numbers_int[i_6] == 0)
-			memset(arr_numbers[i_6], 0, strlen(arr_numbers[i_6]));
-	}
-}
-
-void Create_And_Print_List(char** arr_words, char** arr_numbers, int lines_count)
-{
-	t_List* List = create_node(arr_words[lines_count], arr_numbers[lines_count]);
-
-	for (int h = lines_count - 1; h >= 0; h--)
-	{
-		push_front(&List, arr_words[h], arr_numbers[h]);
-	}
-
-	int u = 0;
-	while (u < lines_count)
-	{
-		printf("%s   %s\n", List->word, List->number);
-		List = List->next;
-		u++;
-	}
-}
-
-void Check_Word(char word[], char** arr_words, int lines_count, char** arr_numbers)
-{
-	int k = 0;
-
-	for (int i = 0; i < lines_count; i++)
-	{
-		if (strcmp(arr_words[i], word) == 0)
-		{
-			k++;
-			printf("\nSuch a word exists. His number %s.\n\n", arr_numbers[i]);
+			sup->next = list_2;
 			break;
 		}
-	}
-
-	if (k == 0)
-		printf("\nSuch a word does not exist.\n");
-
-}
-
-void Check_Number(char number[], char** arr_words, int lines_count, char** arr_numbers)
-{
-	int k = 0;
-
-	for (int i = 0; i < lines_count; i++)
-	{
-		if (strcmp(arr_numbers[i], number) == 0)
+		else
 		{
-			k++;
-			if (k <= 1)
-				printf("\nSuch a number exists. His words: %s\n", arr_words[i]);
-			if (k > 1)
-				printf("                                 %s\n", arr_words[i]);
+			if (strcmp(list_2->word, sup->next->word) < 0)
+			{
+				list_2->next = sup->next;
+				sup->next = list_2;
+				break;
+			}
+			else
+				if (strcmp(list_2->word, sup->next->word) == 0)
+				{
+					list_2->next = sup->next;
+					sup->next = list_2;
+					break;
+				}
+			sup = sup->next;
 		}
 	}
+	return list_1;
+}
 
-	if (k == 0)
-		printf("\nSuch a number does not exist.\n");
+list* Create_List_From_File(FILE* file)
+{
+	list* head = NULL;
+	list* cur = NULL;
+	char* format = "%s %d";
+	head = Create_Node_From_File(file, format);
+	cur = Create_Node_From_File(file, format);
+	while (cur != NULL)
+	{
+		head = Insert(head, cur);
+		cur = Create_Node_From_File(file, format);
+	}
+	return head;
+}
 
+void Print_List(list* head)
+{
+	printf("\n");
+	for (list* node = head; node != NULL; node = node->next)
+	{
+		printf("%s %d\n", node->word, node->number);
+	}
+}
+
+void Checkword(list* head, char word[])
+{
+	int flag_1 = 0;
+	while (head != NULL)
+	{
+		if (strcmp(head->word, word) == 0)
+		{
+			printf("\nYes, this word exists. His number: %d\n", head->number);
+			flag_1++;
+		}
+		head = head->next;
+	}
+	if (flag_1 == 0)
+		printf("\nThere is no such word.\n");
+}
+
+void SearchWords(list* head, int num)
+{
+	int flag_2 = 0;
+	int flag_3 = 0;
+	while (head != NULL)
+	{
+		if ((head->number == num) && (flag_2 == 0))
+		{
+			printf("\nYes, this number exists. His words: %s\n", head->word);
+			flag_2++;
+			flag_3++;
+		}
+		if ((head->number == num) && (flag_2 != 0) && (flag_3 == 0))
+		{
+			printf("                                    %s\n", head->word);
+			flag_2++;
+		}
+		head = head->next;
+		flag_3 = 0;
+	}
+	if (flag_2 == 0)
+		printf("\nThere is no such number.\n");
+}
+
+void Push_Back(list* head_ref, char* word, int number)
+{
+
+	list* new_node = (list*)malloc(sizeof(list));
+	list* last = head_ref;
+
+	new_node->word = word;
+	new_node->number = number;
+
+	new_node->next = NULL;
+
+	if (head_ref == NULL)
+	{
+		head_ref = new_node;
+		return;
+	}
+
+	while (last->next != NULL)
+		last = last->next;
+
+	last->next = new_node;
+	return;
+}
+
+list* Combine_Words_List(list* head)
+{
+	list* cur = head;
+	list* sup = head->next;
+	list* prom = sup;
+	list* list_3 = NULL;
+	int flag = 0;
+	while (sup != NULL)
+	{
+
+		if ((strcmp(cur->word, sup->word) == 0))
+		{
+
+			while ((sup != NULL) && (strcmp(cur->word, sup->word) == 0))
+			{
+				cur->number += sup->number;
+				prom = sup->next;
+				free(sup);
+				sup = prom;
+			}
+
+		}
+
+		if (flag == 0)
+			list_3 = Create_Node(cur->word, cur->number);
+		else
+			Push_Back(list_3, cur->word, cur->number);
+		flag++;
+		cur = sup;
+		sup = sup->next;
+	}
+	Push_Back(list_3, cur->word, cur->number);
+	return list_3;
+}
+
+void Sort_And_Search(FILE* file)
+{
+	char word[40] = "";
+	int num = 0;
+	list* list_1 = Create_List_From_File(file);
+	list* list_3 = Combine_Words_List(list_1);
+	Print_List(list_3);
+	printf("\nEnter a word: ");
+	scanf("%s", &word);
+	Checkword(list_3, word);
+	printf("\nEnter a number: ");
+	scanf("%d", &num);
+	SearchWords(list_3, num);
+	free(list_1);
+	free(list_3);
+	fclose(file);
 }
