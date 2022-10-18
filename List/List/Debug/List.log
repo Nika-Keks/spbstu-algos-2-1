@@ -1,0 +1,5 @@
+﻿  Algorithm.c
+  main.c
+C:\Users\Jeka\source\repos\List\List\main.c(11,22): warning C4013: KolvoStrok: нет определения; предполагается "extern" с возвратом типа "int"
+  Создание кода...
+  List.vcxproj -> C:\Users\Jeka\source\repos\List\Debug\List.exe
