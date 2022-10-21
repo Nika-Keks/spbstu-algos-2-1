@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "./fs.c"
+#include "fs.h"
 
 int getNumberLength(int number) {
   if (number == 0)
