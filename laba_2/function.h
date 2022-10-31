@@ -1,5 +1,5 @@
 #pragma once
-typedef struct list // задаем структуру список
+typedef struct list // create stucture list
 {
     struct list* next;
     int chislo;
