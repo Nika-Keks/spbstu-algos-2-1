@@ -109,8 +109,6 @@ Polynomial* polynomialMul(Polynomial* p1, Polynomial* p2) {
 
   for (int i = 0; i < p1->degree + 1; i += 1) {
     for (int j = 0; j < p2->degree + 1; j += 1) {
-      if (!polynomial->powers[polynomial->degree - i - j])
-        polynomial->powers[polynomial->degree - i - j] = 0;
       polynomial->powers[polynomial->degree - i - j] += p1->powers[p1->degree - i] * p2->powers[p2->degree - j];
     }
   }
