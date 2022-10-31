@@ -8,14 +8,14 @@ int main()
 	
     int size = 50;
     int n = 16;
-    list* test = create_node(n,size); // создаем узел
-    for (int i = 1; i < n; i++) // добавляем элементы в список
+    list** test = create_node(n,size); // create node
+    for (int i = 1; i < n; i++) // push elements into list
     {
         push(test,i,size);
     }
     print(test);
     printf("\n");
    
-    test=delete(test); //удаляем один элемент из спика
+    test=delete(test); //delete one element from list
     print(test);
 }
