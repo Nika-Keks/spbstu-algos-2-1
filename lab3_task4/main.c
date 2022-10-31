@@ -2,16 +2,23 @@
 #include <stdlib.h>
 #include "utils.h"
 
+// Object representing the polynomial object
 typedef struct Polynomial {
+  // List of degrees
 	int* powers;
-	int degree;
+  // Degree of the polynomial, which is the highest of the degrees of the
+  // polynomial's monomials (individual terms) with non-zero coefficients
+  // deg(-x^3 + 6x^2 + 8) = 3
+  int degree;
 } Polynomial;
 
+// Clean up the memory
 void polynomialDestroy(Polynomial* polynomial) {
   free(polynomial->powers);
   free(polynomial);
 }
 
+// Parse polynomial from a string
 Polynomial* polynomialParse(char* string) {
   Polynomial* polynomial = malloc(sizeof(Polynomial));
   polynomial->powers = malloc(0);
@@ -31,6 +38,7 @@ Polynomial* polynomialParse(char* string) {
   return polynomial;
 }
 
+// Read polynomial from a file
 Polynomial* polynomialRead(char* fileName) {
   FILE *fileStream = fopen(fileName, "r");
 
@@ -39,6 +47,7 @@ Polynomial* polynomialRead(char* fileName) {
     exit(0);
   }
 
+  // Read the whole file as a plain stirng
   int length;
   char* content;
   fseek(fileStream, 0, SEEK_END);
@@ -53,6 +62,7 @@ Polynomial* polynomialRead(char* fileName) {
 
   fread(content, 1, length, fileStream);
 
+  // Parse polynomial from the file's content
   Polynomial* polynomial = polynomialParse(content);
 
   fclose(fileStream);
@@ -60,6 +70,7 @@ Polynomial* polynomialRead(char* fileName) {
   return polynomial;
 }
 
+// Save a polynomial into a file
 void polynomialWrite(char* fileName, Polynomial* polynomial) {
   FILE* fileStream = fopen(fileName, "w");
 
@@ -70,15 +81,18 @@ void polynomialWrite(char* fileName, Polynomial* polynomial) {
   fclose(fileStream);
 }
 
+// Sum two polynomials
 Polynomial* polynomialSum(Polynomial* p1, Polynomial* p2) {
   Polynomial* polynomial = malloc(sizeof(Polynomial));
   polynomial->degree = max(p1->degree, p2->degree);
   polynomial->powers = malloc(sizeof(int) * (polynomial->degree + 1));
 
+  // Add first polynomial
   for (int index = 0; index < p1->degree + 1; index += 1) {
     polynomial->powers[polynomial->degree - index] = p1->powers[p1->degree - index];
   }
 
+  // Add second polynomial
   for (int index = 0; index < p2->degree + 1; index += 1) {
     polynomial->powers[polynomial->degree - index] += p2->powers[p2->degree - index];
   }
@@ -86,11 +100,13 @@ Polynomial* polynomialSum(Polynomial* p1, Polynomial* p2) {
   return polynomial;
 }
 
+// Multiply polynomial by an integer
 Polynomial* polynomialMulInt(Polynomial* polynomial, int k) {
   Polynomial* copy = malloc(sizeof(Polynomial));
   copy->degree = polynomial->degree;
   copy->powers = malloc(sizeof(int) * copy->degree);
 
+  // Multiply every coefficient by the integer
   for (int index = 0; index < polynomial->degree + 1; index += 1) {
     copy->powers[index] = polynomial->powers[index] * k;
   }
@@ -98,15 +114,19 @@ Polynomial* polynomialMulInt(Polynomial* polynomial, int k) {
   return copy;
 }
 
+// Subtract a polynomial from another one
 Polynomial* polynomialSub(Polynomial* p1, Polynomial* p2) {
+  // Same as adding negative polynomial
   return polynomialSum(p1, polynomialMulInt(p2, -1));
 }
 
+// Multiply two polynomials
 Polynomial* polynomialMul(Polynomial* p1, Polynomial* p2) {
   Polynomial* polynomial = malloc(sizeof(Polynomial));
   polynomial->degree = p1->degree + p2->degree;
   polynomial->powers = malloc(sizeof(int) * polynomial->degree);
 
+  // Multiply corresponding coefficients
   for (int i = 0; i < p1->degree + 1; i += 1) {
     for (int j = 0; j < p2->degree + 1; j += 1) {
       polynomial->powers[polynomial->degree - i - j] += p1->powers[p1->degree - i] * p2->powers[p2->degree - j];
