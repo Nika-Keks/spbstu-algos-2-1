@@ -24,7 +24,7 @@ Polynomial* polynomialParse(char* string) {
       polynomial->powers = realloc(polynomial->powers, sizeof(int) * (polynomial->degree + 1));
       polynomial->powers[polynomial->degree] = power;
     } else {
-      string++;
+      string += 1;
     }
   }
 
