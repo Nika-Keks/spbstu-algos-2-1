@@ -22,9 +22,16 @@ void treeDeleteNode(Node* node) {
   if (node->rightChild) {
     treeDeleteNode(node->rightChild);
   }
+
   if (node->parent) {
+    if (node->parent->leftChild == node) {
+      node->parent->leftChild = NULL;
+    } else {
+      node->parent->rightChild = NULL;
+    }
     node->parent = NULL;
   }
+
   free(node);
 }
 
