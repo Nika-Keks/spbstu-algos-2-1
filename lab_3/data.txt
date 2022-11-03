@@ -11,4 +11,4 @@
 1 Starostina Galina Ivanovna           1 2 1
 1 Prikhodko Tamara Nikolaevna          4 4 4
 5 Semenenko Larisa Petrovna            3 3 3
-4 Grishchenko Sofia Borisovna             1 1 1
+4 Grishchenko Sofia Borisovna          1 1 1
