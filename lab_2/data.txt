@@ -1,0 +1,14 @@
+1 Loktionova Ludmila Konstantinovna    3 4 5
+2 Fakhrutdinova Svetlana Nikolaevna    2 5 3
+5 Karyagina Natalia Alexandrovna       5 5 4
+3 Klimenko Alexander Vasilievich       3 4 4 
+4 Morozov Yury Alexandrovich           2 3 4
+2 Sinitsyna Polina Stepanovna          5 5 5
+3 Kornilova Evgenia Alexandrovna       2 3 2
+1 Drigailo Vasily Gerasimovich         4 5 2
+5 Ivchenko Alexey Vladimirovich        3 3 4
+2 Ishchenko Igor Valerievich           4 3 2
+1 Starostina Galina Ivanovna           1 2 1
+1 Prikhodko Tamara Nikolaevna          4 4 4
+5 Semenenko Larisa Petrovna            3 3 3
+4 Grishchenko Sofia Borisovna             1 1 1
