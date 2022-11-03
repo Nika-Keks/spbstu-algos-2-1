@@ -18,7 +18,7 @@ list* Insert(list* list_1, list* list_2);
 list* Create_List_From_File(FILE* file);
 void Print_List(list* head);
 void Print_Massive_List(list** head, int q);
-void Push_Back(list* head_ref[], char* group, char* surname, char* name, char* patronymic, int mark1, int mark2, int mark3);
+void Push_Back(list* head_ref, char* group, char* surname, char* name, char* patronymic, int mark1, int mark2, int mark3);
 list** Create_And_Print_Massive_List(list* head);
 void Add_Student(list* head);
 void Delete_Student(list* head);
