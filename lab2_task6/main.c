@@ -1,80 +1,141 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "utils.h"
+#include "utils.c"
 
-// typedef struct MemoryBlock {
-//   int size;
-//   struct MemoryBlock* nextPart;
-// } MemoryBlock;
+#define MEMORY_BLOCKS_QUANTITY 4
+#define MEMORY_BLOCK_SIZE 1024
 
-// typedef struct Process {
-//   int blockIndex;
-//   int size;
-//   struct Process* nextPart;
-// } Process;
+typedef struct MemoryBlock {
+  int id;
+  size_t freeSpace;
+  struct MemoryBlock* next;
+} MemoryBlock;
 
-int* bestFit(int* blocks, int blocksCount, int* processes, int processesCount) {
-  int *allocations = malloc(sizeof(int) * processesCount);
+typedef struct Process {
+  int id;
+  size_t size;
+  struct Process* next;
+  struct MemoryBlock* memoryBlock;
+} Process;
 
-  for (int processIndex = 0; processIndex < processesCount; processIndex += 1) {
-    int processSize = processes[processIndex];
-    int smallestIndex = -1;
-    int smallestSize = -1;
-    for (int blockIndex = 0; blockIndex < blocksCount; blockIndex += 1) {
-      int blockRemainingSize = blocks[blockIndex];
-      if (processIndex == 3)
-        printf("%d, %d, %d\n", blockIndex, blockRemainingSize, processSize);
-      if (blockRemainingSize < processSize)
-        continue;
-      if (smallestSize != -1 && smallestSize <= blockRemainingSize)
-        continue;
-      smallestSize = blockRemainingSize;
-      smallestIndex = blockIndex;
+MemoryBlock* memoryBlockHead;
+Process* processHead;
+
+MemoryBlock* getLastMemoryBlock() {
+  MemoryBlock* head = memoryBlockHead;
+
+  while (head->next) {
+    head = head->next;
+  }
+
+  return head;
+}
+
+Process* getLastProcess() {
+  Process* head = processHead;
+
+  while (head->next) {
+    head = head->next;
+  }
+
+  return head;
+}
+
+void initMemory() {
+  for (int index = 0; index < MEMORY_BLOCKS_QUANTITY; index += 1) {
+    MemoryBlock* memoryBlock = malloc(sizeof(MemoryBlock));
+    memoryBlock->id = index;
+    memoryBlock->freeSpace = MEMORY_BLOCK_SIZE;
+
+    if (memoryBlockHead) {
+      MemoryBlock *lastMemoryBlock = getLastMemoryBlock();
+      lastMemoryBlock->next = memoryBlock;
+    } else {
+      memoryBlockHead = memoryBlock;
     }
-    allocations[processIndex] = smallestIndex;
-    blocks[smallestIndex] -= processSize;
-  }
-
-  return allocations;
-}
-
-void displayAllocations(int* allocations, int* processes, int processesCount) {
-  printf("Process number | Process size | Block number\n");
-  printf("---------------+--------------+-------------\n");
-  for (int processIndex = 0; processIndex < processesCount; processIndex += 1) {
-    int processNumber = processIndex + 1;
-    int processSize = processes[processIndex];
-    char* blockNumber = allocations[processIndex] == -1
-      ? "Not allocated"
-      : intToString(allocations[processIndex] + 1);
-    printf("%-15d| %-13d| %s\n", processNumber, processSize, blockNumber);
   }
 }
 
-int* getMemoryBlocks(int* count) {
-  printf("Enter the number of blocks: ");
-  scanf("%d", count);
+MemoryBlock* getBestFitMemoryBlock(size_t processSize) {
+  MemoryBlock* bestBlock = NULL;
+  MemoryBlock* currentBlock = memoryBlockHead;
 
-  int* blocks = malloc(sizeof(int) * *count);
-
-  for (int index = 0; index < *count; index += 1) {
-    printf("Enter size of block number %d: ", index + 1);
-    scanf("%d", &blocks[index]);
+  while (currentBlock) {
+    if (currentBlock->freeSpace >= processSize && (!bestBlock || bestBlock->freeSpace > currentBlock->freeSpace)) {
+      bestBlock = currentBlock;
+    }
+    currentBlock = currentBlock->next;
   }
 
-  return blocks;
+  return bestBlock;
 }
 
-int* getProcesses(int* count) {
-  printf("Enter the number of processes: ");
-  scanf("%d", count);
-
-  int* processes = malloc(sizeof(int) * *count);
-
-  for (int index = 0; index < *count; index += 1) {
-    printf("Enter size of process number %d: ", index + 1);
-    scanf("%d", &processes[index]);
+Process* newMalloc(size_t size) {
+  if (!memoryBlockHead) {
+    return NULL;
   }
 
-  return processes;
+  MemoryBlock* bestMemoryBlock = getBestFitMemoryBlock(size);
+
+  if (!bestMemoryBlock) {
+    printf("Could not allocate memory");
+    exit(0);
+  }
+
+  Process* process = malloc(sizeof(Process));
+  process->size = size;
+  process->memoryBlock = bestMemoryBlock;
+  bestMemoryBlock->freeSpace -= size;
+
+  if (processHead) {
+    Process* lastProcess = getLastProcess();
+    lastProcess->next = process;
+    process->id = lastProcess->id + 1;
+  } else {
+    processHead = process;
+    process->id = 0;
+  }
+
+  return process;
+}
+
+void newFree(Process* node) {
+  Process* previousNode = processHead;
+
+  while (previousNode->next != node) {
+    previousNode = previousNode->next;
+  }
+
+  previousNode->next = node->next;
+  node->memoryBlock->freeSpace += node->size;
+  free(node);
+}
+
+int integrityCheck() {
+  size_t memorySum = 0;
+  size_t freeSpaceSum = 0;
+  Process* process = processHead;
+  MemoryBlock* memoryBlock = memoryBlockHead;
+
+  while (process) {
+    memorySum += process->size;
+    process = process->next;
+  }
+
+  while (memoryBlock) {
+    freeSpaceSum += memoryBlock->freeSpace;
+    memoryBlock = memoryBlock->next;
+  }
+
+  return memorySum + freeSpaceSum == MEMORY_BLOCKS_QUANTITY * MEMORY_BLOCK_SIZE;
+}
+
+void displayAllocations() {
+  printf("Process ID | Process size | Block ID\n");
+  printf("-----------+--------------+-----------\n");
+  Process* process = processHead;
+  while (process) {
+    printf("%-11d| %-13zu| %d\n", process->id, process->size, process->memoryBlock->id);
+    process = process->next;
+  }
 }

@@ -1,13 +1,26 @@
-#include "main.h"
+#include "main.c"
 
 int main() {
-  int blocksCount;
-  int processesCount;
-  int* blocks = getMemoryBlocks(&blocksCount);
-  int* processes = getProcesses(&processesCount);
-  int* allocations = bestFit(blocks, blocksCount, processes, processesCount);
+  initMemory();
 
-  displayAllocations(allocations, processes, processesCount);
+  Process* pointer1 = newMalloc(228);
+  Process* pointer2 = newMalloc(1000);
+  Process* pointer3 = newMalloc(125);
+  Process* pointer4 = newMalloc(1000);
+  Process* pointer5 = newMalloc(300);
+  Process* pointer6 = newMalloc(100);
+
+  newFree(pointer2);
+
+  displayAllocations();
+
+  printf("\n");
+
+  if (integrityCheck()) {
+    printf("Memory is consistent :)");
+  } else {
+    printf("Memory is not consistent :(");
+  }
 
   return 0;
 }
