@@ -13,7 +13,7 @@ typedef struct Node {
   struct Node* rightChild;
 } Node;
 
-int random(int min, int max) {
+int randomInt(int min, int max) {
   return min + ((int)rand() / (int)RAND_MAX) * (max - min);
 }
 
@@ -25,9 +25,9 @@ Node* generateRandomNode(int depth, int side, int parentValue) {
 
   Node* node = malloc(sizeof(Node));
   if (side == 0) {
-    node->value = random(MIN_RANDOM_TREE_VALUE, parentValue - 1);
+    node->value = randomInt(MIN_RANDOM_TREE_VALUE, parentValue - 1);
   } else {
-    node->value = random(parentValue, MAX_RANDOM_TREE_VALUE);
+    node->value = randomInt(parentValue, MAX_RANDOM_TREE_VALUE);
   }
   node->leftChild = generateRandomNode(depth + 1, 0, node->value);
   node->rightChild = generateRandomNode(depth + 1, 1, node->value);
