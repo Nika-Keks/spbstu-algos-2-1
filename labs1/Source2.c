@@ -11,9 +11,9 @@ struct listNode {
 	int n;
 };
 
-/*функция вставляет новый узел в наш список
-вставка происходит сразу с учетом длины слова
-если слова одинаковой длины то вставка просиходит в лексикографической порядке
+/*the function inserts a new node into our list,
+the insertion takes place immediately, taking into account the length of the word
+if the words are of the same length, the insertion occurs in lexicographic order
 */
 
 void insert(ListNodePtr* sPtr, char* a, int lenght) {
@@ -23,7 +23,7 @@ void insert(ListNodePtr* sPtr, char* a, int lenght) {
 
 	newPtr = (ListNodePtr)malloc(sizeof(listNode));
 
-	if (newPtr != NULL)//если удалось выделить память записываем в структуру строку и длину строки
+	if (newPtr != NULL)//if it was possible to allocate memory, we write the string and the length of the string into the structure
 	{
 		newPtr->string = a;
 		newPtr->n = lenght;
@@ -31,7 +31,7 @@ void insert(ListNodePtr* sPtr, char* a, int lenght) {
 
 		previousPtr = NULL;
 		currentPtr = *sPtr;
-		while (currentPtr != NULL && lenght > currentPtr->n)// пробегаемся по списку пока длина нашего слова больше длины в узле
+		while (currentPtr != NULL && lenght > currentPtr->n)// we run through the list until the length of our word is greater than the length in the node
 
 		{
 			previousPtr = currentPtr;
@@ -61,7 +61,7 @@ int isEmpty(ListNodePtr sPtr) {
 	return sPtr == NULL;
 }
 
-/*Функция печатает связанный список, то есть все слова в списке */
+/*The function prints a linked list, that is, all the words in the list*/
 void printList(ListNodePtr currentPtr) {
 	if (isEmpty(currentPtr)) {
 		puts("List is empty.\n");
@@ -75,7 +75,7 @@ void printList(ListNodePtr currentPtr) {
 	}
 }
 
-/*сравнивает слова в лексикографическом порядке(используя таблицу ASKII)*/
+/*compares words in lexicographic order (using an ASCII table)*/
 int Compare(char* a, char* b, int c) {
 	for (int i = 0; i < c; i++) {
 		if (a[i] < b[i]) {
@@ -88,7 +88,7 @@ int Compare(char* a, char* b, int c) {
 	return 0;
 }
 
-/*печатает одно слово которое находится в узле*/
+/*prints one word that is in the node*/
 void Print(char* a, int n) {
 	for (int i = 0; i < n; i++) {
 		printf("%c", a[i]);
@@ -96,7 +96,7 @@ void Print(char* a, int n) {
 	puts("");
 }
 
-/*осуществлет посимвольное чтение из файла*/
+/*performs character-by-character reading from a file*/
 ListNodePtr ReadText(char const* filename) {
 	ListNodePtr StartPtr = NULL;
 	FILE* f;
@@ -104,11 +104,11 @@ ListNodePtr ReadText(char const* filename) {
 	char* a = NULL;
 	char t;
 	f = fopen(filename, "r+");
-	if (f != NULL) {//если удалось открыть файл
+	if (f != NULL) {//if it was possible to open the file
 		a = (char*)malloc(sizeof(char));
-		if (a != NULL) {//если выделилась память 
+		if (a != NULL) {//if memory is allocated
 			while (fscanf(f, "%c", &t) == 1) {
-				if (IsAlNum(t)) {//если символ является буквой
+				if (IsAlNum(t)) {//if the symbol is a letter
 					length++;
 					char* p = (char*)realloc(a, length * sizeof(char));
 					if (p == NULL) {
@@ -118,7 +118,7 @@ ListNodePtr ReadText(char const* filename) {
 					a[length - 1] = t;
 				}
 				else {
-					if (IsAlNum(a[0])) {//вслучае если символ является разделителем проверяет можно ли нам вставить слово в узел
+					if (IsAlNum(a[0])) {//if the symbol is a separator, it checks whether we can insert a word into the node
 						insert(&StartPtr, a, length);
 						length = 0;
 						a = (char*)malloc(sizeof(char));
@@ -129,7 +129,7 @@ ListNodePtr ReadText(char const* filename) {
 					}
 				}
 			}
-			if (IsAlNum(a[0])) {//если нет разделителей то нужно прописать отдельно проверку
+			if (IsAlNum(a[0])) {//if there are no separators, then you need to register a separate check
 				insert(&StartPtr, a, length);
 				length = 0;
 				a = (char*)malloc(sizeof(char));
@@ -142,19 +142,19 @@ ListNodePtr ReadText(char const* filename) {
 		fclose(f);
 	}
 	else {
-		printf("Error.");//если файл не удалось открыть
+		printf("Error.");//if the file could not be opened
 	}
 	return StartPtr;
 }
 
-/*Проверяет является символ буквой или разделяющим символом
-если да то возвращаем ноль если нет то 1*/
+/*Checks whether the character is a letter or a separating character
+if yes then we return zero if not then 1*/
 int IsAlNum(char c) {
 	if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))return 1;
 	return 0;
 }
 
-/*вы вводите число и функция выводит все слова имеющие длину большую этого числа*/
+/*you enter a number and the function outputs all words having a length greater than this number*/
 void first(ListNodePtr currentPtr, int N)
 {
 	if (isEmpty(currentPtr)) {
@@ -170,10 +170,10 @@ void first(ListNodePtr currentPtr, int N)
 	}
 }
 
-/*вы вводите число и функция выводит все слова имеющие длину вавную этому числу*/
+/*you enter a number and the function outputs all words having a length equal to this number*/
 void second(ListNodePtr currentPtr, int N)
 {
-	if (isEmpty(currentPtr)) {//проверка на то является ли список пустым
+	if (isEmpty(currentPtr)) {//checking whether the list is empty
 		puts("List is empty.\n");
 	}
 	else {

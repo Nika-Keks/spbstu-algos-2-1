@@ -1,41 +1,41 @@
 #pragma once
-/*Данная команда переименовывает тип нашей структуры struct listNode в просто listNode */
+/*This command renames the type of our struct ListNode structure to just ListNode */
 typedef struct listNode listNode;
 
-/*Данная команда переименовывает тип указателя на структуру listNode* в  просто ListNodePtr*/
+/*This command renames the pointer type to the ListNode* structure to just ListNodePtr*/
 typedef listNode* ListNodePtr;
 
-/*Структура предназначенная для того что чтобы хранить данные в узле списка и указатель на следующий узел*/
+/*A structure designed to store data in a list node and a pointer to the next node*/
 struct listNode {
 	listNode* nextptr;
 	char* string;
 	int n;
 };
 
-/*Функция вставки нового узла в список*/
+/*The function of inserting a new node into the list*/
 void insert(ListNodePtr* sPtr, char* a, int lenght);
 
-/*Функция проверяет является ли список пустым*/
+/*The function checks whether the list is empty*/
 int isEmpty(ListNodePtr sPtr);
 
-/*печатает одно слово которое находится в узле*/
+/*prints one word that is in the node*/
 void Print(char* a, int n);
 
-/*Функция печатает связанный список, то есть все слова в списке */
+/*The function prints a linked list, that is, all the words in the list */
 void printList(ListNodePtr currentPtr);
 
-/*Проверяет является символ буквой или разделяющим символом*/
+/*Checks whether the character is a letter or a separating character*/
 int IsAlNum(char c);
 
-/*сравнивает слова в лексикографическом порядке(используя таблицу ASKII)*/
+/*compares words in lexicographic order (using an ASCII table)*/
 int Compare(char* a, char* b, int c);
 
-/*вы вводите число и функция выводит все слова имеющие длину большую этого числа*/
+/*you enter a number and the function outputs all words having a length greater than this number*/
 void first(ListNodePtr currentPtr, int N);
 
-/*вы вводите число и функция выводит все слова имеющие длину вавную этому числу*/
+/*you enter a number and the function outputs all words having a length equal to this number*/
 void second(ListNodePtr currentPtr, int N);
 
-/*осуществлет посимвольное чтение из файла*/
+/*performs character-by-character reading from a file*/
 ListNodePtr ReadText(char const* filename);
 
