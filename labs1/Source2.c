@@ -56,7 +56,7 @@ void insert(ListNodePtr* sPtr, char* a, int lenght) {
 	}
 }
 
-/*Функция проверяет является ли список пустым*/
+/*The function checks whether the list is empty*/
 int isEmpty(ListNodePtr sPtr) {
 	return sPtr == NULL;
 }

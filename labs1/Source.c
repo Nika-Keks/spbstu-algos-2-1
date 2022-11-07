@@ -25,14 +25,14 @@ ListNodePtr ReadText(char const* filename);
 int main(void) {
 	setlocale(0, "");
 	ListNodePtr startPtr = ReadText("file.txt");
-	printf("ќсновной пункт.\n");
+	printf("The main point".\n");
 	printList(startPtr);
 	int F;
-	printf("¬ведите длину слова и вам выведутс€ все слова больше этого слова.");
+	printf("Enter the length of the word and you will see all words larger than this word.");
 	scanf_s("%d", &F);
 	first(startPtr, F);
 	int S;
-	printf("¬ведите длину слова и вам выведутс€ все слова такой же длины .");
+	printf("Enter the length of the word and you will get all the words of the same length .");
 	scanf_s("%d", &S);
 	second(startPtr, S);
 	return 0;
