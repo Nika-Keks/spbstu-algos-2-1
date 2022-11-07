@@ -1,0 +1,10 @@
+52 Ivanov Petr Ivanovich 3.5
+52 Abaev Misha Sergeevich 3.7
+45 Petrova Liza Vasilevna 2
+34 Markov Misha Dmitrievich 4.5
+34 Kukushkina Olga Sergeevna 3.3
+52 Markov Danil Ivanovich 3
+3 Kokorin Misha Sergeevich 3.9
+4 Petrova Natasha Vasilevna 2.3
+4 Bakaev Misha Dmitrievich 4.1
+34 Solovieva Katya Sergeevna 1.8
