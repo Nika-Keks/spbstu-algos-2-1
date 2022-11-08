@@ -1,4 +1,6 @@
-#include "main.c"
+#include <stdlib.h>
+#include <stdio.h>
+#include "main.h"
 
 int main() {
   initMemory();

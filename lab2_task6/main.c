@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "utils.c"
+#include "utils.h"
 
 #define MEMORY_BLOCKS_QUANTITY 4
 #define MEMORY_BLOCK_SIZE 1024
