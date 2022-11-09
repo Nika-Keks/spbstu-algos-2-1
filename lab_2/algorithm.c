@@ -8,7 +8,7 @@ list* p = NULL;         //current pointer
 
 list* Create_Node(char block_name)
 {
-    list* node = (list*)m_alloc(size_elem);  //allocate the first memory block of size "size" for the list node
+    list* node = m_alloc(size_elem);  //allocate the first memory block of size "size" for the list node
     node->block_name = block_name;
     node->next = NULL;
 
