@@ -1,0 +1,6 @@
+hello 2
+brave 10
+new 228
+word 228
+asphalt 100
+brave 35
