@@ -27,7 +27,7 @@ int main(void) {
 	//user enters the number of user requests
 	scanf_s("%d", &n);
 	for (int i = 0; i < n; i++) {
-		//создание листа
+        
 		Listptr tmp = (Listptr)malloc(sizeof(List));
 		if (tmp != NULL) {
 			tmp->size = 0;
