@@ -1,10 +1,9 @@
 #pragma once
 
-
-//узел списка который хранит память,
-//которая у нас имеется чтобы выполнить какой-либо процесс
-//и размер в байтах куска выделенной памяти
-//указатели на след и предыдущий узел списка
+//the node of the list that stores the memory
+//that we have to perform some process
+//and the size in bytes of a piece of allocated memory
+//pointers to the trace and the previous node of the list
 typedef struct Node {
 	void* memory;
 	int size;
@@ -13,9 +12,8 @@ typedef struct Node {
 }Node;
 typedef Node* Nodeptr;
 
-
-//Структура "Двусвязный Список" будет хранить свой размер (чтобы не пересчитывать количество элементов каждый раз),
-//а также указатель head, ссылающийся на первый элемент, и указатель tail, ссылающийся на последний элемент
+//The "Doubly Linked List" structure will store its size (so as not to recalculate the number of elements each time),
+//as well as the head pointer referring to the first element and the tail pointer referring to the last element
 typedef struct List {
 	size_t size;
 	Nodeptr tail;

@@ -4,10 +4,10 @@
 #pragma warning (disable:4996)
 
 
-//узел списка который хранит память,
-//которая у нас имеется чтобы выполнить какой-либо процесс
-//и размер в байтах куска выделенной памяти
-//указатели на след и предыдущий узел списка
+//the node of the list that stores the memory
+//that we have to perform some process
+//and the size in bytes of a piece of allocated memory
+//pointers to the trace and the previous node of the list
 typedef struct Node {
 	void* memory;
 	int size;
@@ -17,8 +17,8 @@ typedef struct Node {
 typedef Node* Nodeptr;
 
 
-//Структура "Двусвязный Список" будет хранить свой размер (чтобы не пересчитывать количество элементов каждый раз),
-//а также указатель head, ссылающийся на первый элемент, и указатель tail, ссылающийся на последний элемент
+//The "Doubly Linked List" structure will store its size (so as not to recalculate the number of elements each time),
+//as well as the head pointer referring to the first element and the tail pointer referring to the last element
 typedef struct List {
 	size_t size;
 	Nodeptr tail;
@@ -26,7 +26,7 @@ typedef struct List {
 }List;
 typedef struct List* Listptr;
 
-//функция создает наш лист
+//the function creates our sheet
 Listptr CreateList() {
 	Listptr tmp = (Listptr)malloc(sizeof(List));
 	if (tmp != NULL) {
@@ -36,7 +36,7 @@ Listptr CreateList() {
 	return tmp;
 }
 
-// Заодно опишем функцию, которая удаляет список
+// At the same time, we will describe the function that deletes the list
 void DeleteList(Listptr* list) {
 	Nodeptr tmp = (*list)->head;
 	Nodeptr next = NULL;
@@ -50,7 +50,7 @@ void DeleteList(Listptr* list) {
 }
 
 
-//функция нужна для того что бы вставить элемент в начало списка
+//the function is needed in order to insert an item at the beginning of the list
 void pushFront(Listptr list, void* data, int size) {
 	Nodeptr tmp = (Nodeptr)malloc(sizeof(Node));
 	if (tmp == NULL) {
@@ -74,8 +74,8 @@ void pushFront(Listptr list, void* data, int size) {
 }
 
 
-//функция нужна для того что бы вставить элемент в конец списка
 
+//the function is needed in order to insert an item at the end of the list
 void pushBack(Listptr list, void* value, int size) {
 	Nodeptr tmp = (Nodeptr)malloc(sizeof(Node));
 	if (tmp == NULL) {
@@ -98,7 +98,7 @@ void pushBack(Listptr list, void* value, int size) {
 	}
 }
 
-//Получение n-го элемента в списке
+//Getting the nth item in the list
 Nodeptr GetNth(Listptr list, int index) {
 	Nodeptr tmp = list->head;
 	int i = 0;
@@ -109,20 +109,19 @@ Nodeptr GetNth(Listptr list, int index) {
 	return tmp;
 }
 
-
-//универсальная функция вставки узла в список которая принимает на вход 
-//указатель на лист, позицию куда надо вставить узел и память выделенную под процесс с ее размером
+//a universal function for inserting a node into a list that takes as input
+//a pointer to a sheet, the position where the node should be inserted and the memory allocated for the process with its size
 void Insert(Listptr list, int index, int size, void* value) {
-	Nodeptr elm = NULL;//указатель на элемент после котрого мы будем вставлять новый узел
-	Nodeptr ins = NULL;//указатель на новый узел
-	if (list->size == 0) {//если размер списка 0 то вызываем функцию 
-						  //pushfront которая добавляет узел в начало списка
+	Nodeptr elm = NULL;//pointer to the element after which we will insert a new node
+	Nodeptr ins = NULL;//pointer to a new node
+	if (list->size == 0) {//if the list size is 0, then we call the function
+						  //push front which adds a node to the top of the list
 		pushFront(list, value, size);
 	}
 	else {
 
 		elm = GetNth(list, index);
-		if (elm == NULL) {//если функция возвращает указатель на NULL то вставляем узел в конец списка
+		if (elm == NULL) {//if the function returns a pointer to NULL, then insert the node at the end of the list
 			pushBack(list, value, size);
 		}
 		else {
@@ -152,7 +151,7 @@ void Insert(Listptr list, int index, int size, void* value) {
 	list->size++;
 }
 
-//функция принтует наш список
+//the function prints our list
 void PrintList(Nodeptr current) {
 	if (IsEmpty(current)) {
 		printf("The list is empty.\n");
@@ -167,22 +166,22 @@ void PrintList(Nodeptr current) {
 	}
 }
 
-//проверяет является ли список пустым
+//checks if the list is empty
 int IsEmpty(Nodeptr Sptr) {
 	return (int)(Sptr == NULL);
 }
 
-//функция которая занимается выделением памяти под некоторые процессы,
-//на которые требуется память, память, расходуемая на эти процессы 
-//выделяется под них по принципу best fit
+//a function that allocates memory for some processes
+// that require memory, the memory spent on these processes
+// is allocated for them according to the best fit principle
 void bestfit(Listptr list, int value)
 {
 	Nodeptr ptr = NULL;
 	int min = INF;
 	int tmp;
 	Nodeptr currentPtr = list->head;
-	//в этом цикле мы пытаемся определить какой блок памяти имеет наименьший размер в байтах
-	//и при этом у него все равно не меньше памяти чем требуется под процесс
+	//in this loop, we are trying to determine which memory block has the smallest size in bytes
+    //and at the same time it still has no less memory than is required for the process
 	while (currentPtr != NULL) {
 		tmp = currentPtr->size - value;
 		if (min > tmp && tmp >= 0) {
@@ -192,15 +191,15 @@ void bestfit(Listptr list, int value)
 		currentPtr = currentPtr->next;
 	}
 	if (min == INF) { printf("No suitable memory block\n"); }
-	//здесь мы у того блока который прошел описанный выше отбор отнимаем количество памяти в байтах
-	//расходуемое под процесс
+	//here we take away the amount of memory in bytes from the block that passed the selection described above
+    //consumed by the process
 	else {
 		ptr->size = ptr->size - value;
 		if (ptr->size == 0) {
 			ptr->memory = NULL;
 		}
 		else {
-			//перевыделяем память, чтобы котролировать количство памяти которое остается
+			//reallocating memory to control the amount of memory that remains
 			void* PTR = (void*)realloc(ptr->memory, ptr->size);
 			if (PTR != NULL) {
 				ptr->memory = PTR;

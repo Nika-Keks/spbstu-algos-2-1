@@ -4,10 +4,6 @@
 #pragma warning (disable:4996)
 
 
-//узел списка который хранит память,
-//которая у нас имеется чтобы выполнить какой-либо процесс
-//и размер в байтах куска выделенной памяти
-//указатели на след и предыдущий узел списка
 typedef struct Node {
 	void* memory;
 	int size;
@@ -17,8 +13,6 @@ typedef struct Node {
 typedef Node* Nodeptr;
 
 
-//Структура "Двусвязный Список" будет хранить свой размер (чтобы не пересчитывать количество элементов каждый раз),
-//а также указатель head, ссылающийся на первый элемент, и указатель tail, ссылающийся на последний элемент
 typedef struct List {
 	size_t size;
 	Nodeptr tail;
@@ -30,7 +24,7 @@ typedef struct List* Listptr;
 int main(void) {
 	printf("Enter the number of data blocks: ");
 	int n;
-	//пользователь вводит количество  запросов пользователя
+	//user enters the number of user requests
 	scanf_s("%d", &n);
 	for (int i = 0; i < n; i++) {
 		//создание листа
@@ -40,9 +34,9 @@ int main(void) {
 			tmp->tail = NULL;
 			tmp->head = NULL;
 		}
-		else { printf("No memory available\n"); }//память не выделены
-		//пользователь вводит колиство блоков памяти выделяемых под процессы
-		//для каждого блока памяти размер в байтах
+		else { printf("No memory available\n"); }//memory is not allocated
+		//the user enters the number of memory blocks allocated for processes
+        //for each memory block size in bytes
 		int m;
 		printf("Enter the number of memory blocks: ");
 		scanf_s("%d", &m);
@@ -54,13 +48,13 @@ int main(void) {
 			memory = (void*)malloc(size);
 			Insert(tmp, j-1, size, memory);
 		}
-		//пользователь вводит колиство процессов
+		//the user enters the number of processes
 		printf("Enter the number of processes: ");
 		scanf_s("%d", &m);
 		printf("Enter processes: ");
 		for (int j = 0; j < m; j++)
 		{
-			int value;//сложность каждого процесса выраженная в байтах
+			int value;//the complexity of each process expressed in bytes
 			scanf_s("%d", &value);
 			bestfit(tmp, value);
 		}
