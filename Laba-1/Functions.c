@@ -2,17 +2,16 @@
 #include <math.h>
 #include <stdlib.h>
 #include <locale.h>
+#include "Laba1.h"
 
-typedef struct Node List;
-typedef List* Listptr;
 /*
-* Создаю структура Node, которая содержит в себе строку (указатель), длину и указатель на следующий узел
+* Функция нахождения длины строки
 */
-struct Node {
-	char* a;
-	int length;
-	struct Node* next;
-};
+int LEN(char* a) {
+	int i = 0;
+	while (a[i++] != '\0');
+	return --i;
+}
 
 /*
 * Функция проверяет не равен ли указатель первый указатель NULL (пустой ли список)
@@ -22,41 +21,21 @@ int isEmpty(Listptr sPtr) {
 }
 
 /*
-* Выводит строку
-*/
-void Print(char* a, int n) {
-	for (int i = 0; i < n; i++) {
-		printf("%c", a[i]);
-	}
-	puts("");
-}
-
-
-/*
 * Выводит все слова списка (начиная с укателя, который мы передадим)
 * Если список пуст, то выводит сообщение об ошибке
 */
-void printList(Listptr currentPtr) {
+void PrintList(Listptr currentPtr) {
 	if (isEmpty(currentPtr)) {
 		puts("List is empty.");
 	}
 	else {
 		puts("The list is:");
 		while (currentPtr != NULL) {
-			Print(currentPtr->a, currentPtr->length);
+			printf("%s\n", currentPtr->a);
 			currentPtr = currentPtr->next;
 		}
 	}
 }
-
-/*
-* Проверка на разделители
-*/
-int IsAlNum(char c) {
-	if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) return 1;
-	return 0;
-}
-
 
 /*
 * Функция, которая возвращает 1 в случае, если первая строка раньше в лексикографическом порядке
@@ -117,24 +96,23 @@ void Insert(char* a, int length, Listptr* Ptr) {
 */
 void FIRST(Listptr currentPtr) {
 	int N;
-	printf("Введите N и вам виведутся слова > N:\n");
-	scanf_s("%d", &N);
+	printf("Введите N и вам виведутся слова > N: ");
+	scanf("%d", &N);
 	while (currentPtr != NULL) {
-		if (currentPtr->length > N) Print(currentPtr->a, currentPtr->length);
+		if (currentPtr->length > N) printf("%s\n", currentPtr->a);
 		currentPtr = currentPtr->next;
 	}
 }
-
 
 /*
 * Второй пункт задачи
 */
 void SECOND(Listptr currentPtr) {
 	int N;
-	printf("Введите N и вам виведутся слова = N:\n");
-	scanf_s("%d", &N);
+	printf("Введите N и вам виведутся слова = N: ");
+	scanf("%d", &N);
 	while (currentPtr != NULL && currentPtr->length <= N) {
-		if (currentPtr->length == N) Print(currentPtr->a, currentPtr->length);
+		if (currentPtr->length == N) printf("%s\n", currentPtr->a);
 		currentPtr = currentPtr->next;
 	}
 }
@@ -142,36 +120,14 @@ void SECOND(Listptr currentPtr) {
 /*
 * Функция считывания из файла, возвращает список
 */
-Listptr* ReadText(char const* filename) {
-	Listptr start = NULL; // 
-	int len = 0;  // длина
-	char* a = NULL; // строка
-	FILE* f;
-	char t;
-	fopen_s(&f, filename, "r");
-	if (f == NULL) return NULL;
-	a = (char*)malloc(sizeof(char));
+Listptr ReadText(char const* filename) {
+	Listptr start = NULL;
+	char* a = (char*)malloc(sizeof(char));
 	if (a == NULL) return NULL;
-	while (fscanf_s(f, "%c", &t) == 1) { // пока удалось считать
-		if (IsAlNum(t) == 1) { // проверка на разделитель
-			len++;
-			char* p = (char*)realloc(a, len * sizeof(char));
-			if (p == NULL) return NULL;
-			a = p;
-			a[len - 1] = t; // добавление символа в строку
-		}
-		else {
-			if (IsAlNum(a[0])) { // если строка заполнена, то добавляем узел
-				Insert(a, len, &start);
-				len = 0;
-				a = (char*)malloc(sizeof(char));
-				if (a == NULL) return NULL;
-			}
-		}
-	}
-	if (IsAlNum(a[0])) { // проверка на последную строку
-		Insert(a, len, &start);
-		len = 0;
+	FILE* f = fopen(filename, "r");
+	if (f == NULL) return NULL;
+	while (fscanf(f, "%s", a) == 1) {
+		Insert(a, LEN(a), &start);
 		a = (char*)malloc(sizeof(char));
 		if (a == NULL) return NULL;
 	}
@@ -189,4 +145,3 @@ void list_free(Listptr A) {
 		free(prev);
 	}
 }
-
