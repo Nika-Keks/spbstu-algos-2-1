@@ -2,14 +2,9 @@
 #include<stdio.h>
 #include<locale.h>
 #pragma warning(disable:4996)
+#include "Header.h"
 
-typedef struct listNode listNode;
-typedef listNode* ListNodePtr;
-struct listNode {
-	listNode* nextptr;
-	char* string;
-	int n;
-};
+
 
 /*the function inserts a new node into our list,
 the insertion takes place immediately, taking into account the length of the word
