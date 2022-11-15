@@ -1,24 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #define INF 1000000000
+#include"Header.h"
 #pragma warning (disable:4996)
-
-
-typedef struct Node {
-	void* memory;
-	int size;
-	struct Node* next;
-	struct Node* prev;
-}Node;
-typedef Node* Nodeptr;
-
-
-typedef struct List {
-	size_t size;
-	Nodeptr tail;
-	Nodeptr head;
-}List;
-typedef struct List* Listptr;
 
 
 int main(void) {
@@ -27,7 +11,7 @@ int main(void) {
 	//user enters the number of user requests
 	scanf_s("%d", &n);
 	for (int i = 0; i < n; i++) {
-        
+
 		Listptr tmp = (Listptr)malloc(sizeof(List));
 		if (tmp != NULL) {
 			tmp->size = 0;
@@ -36,7 +20,7 @@ int main(void) {
 		}
 		else { printf("No memory available\n"); }//memory is not allocated
 		//the user enters the number of memory blocks allocated for processes
-        //for each memory block size in bytes
+		//for each memory block size in bytes
 		int m;
 		printf("Enter the number of memory blocks: ");
 		scanf_s("%d", &m);
@@ -46,7 +30,7 @@ int main(void) {
 			void* memory;
 			scanf_s("%d", &size);
 			memory = (void*)malloc(size);
-			Insert(tmp, j-1, size, memory);
+			Insert(tmp, j - 1, size, memory);
 		}
 		//the user enters the number of processes
 		printf("Enter the number of processes: ");

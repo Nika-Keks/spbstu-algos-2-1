@@ -2,29 +2,8 @@
 #include<stdlib.h>
 #define INF 1000000000
 #pragma warning (disable:4996)
+#include "Header.h"
 
-
-//the node of the list that stores the memory
-//that we have to perform some process
-//and the size in bytes of a piece of allocated memory
-//pointers to the trace and the previous node of the list
-typedef struct Node {
-	void* memory;
-	int size;
-	struct Node* next;
-	struct Node* prev;
-}Node;
-typedef Node* Nodeptr;
-
-
-//The "Doubly Linked List" structure will store its size (so as not to recalculate the number of elements each time),
-//as well as the head pointer referring to the first element and the tail pointer referring to the last element
-typedef struct List {
-	size_t size;
-	Nodeptr tail;
-	Nodeptr head;
-}List;
-typedef struct List* Listptr;
 
 //the function creates our sheet
 Listptr CreateList() {
@@ -181,7 +160,7 @@ void bestfit(Listptr list, int value)
 	int tmp;
 	Nodeptr currentPtr = list->head;
 	//in this loop, we are trying to determine which memory block has the smallest size in bytes
-    //and at the same time it still has no less memory than is required for the process
+	//and at the same time it still has no less memory than is required for the process
 	while (currentPtr != NULL) {
 		tmp = currentPtr->size - value;
 		if (min > tmp && tmp >= 0) {
@@ -192,7 +171,7 @@ void bestfit(Listptr list, int value)
 	}
 	if (min == INF) { printf("No suitable memory block\n"); }
 	//here we take away the amount of memory in bytes from the block that passed the selection described above
-    //consumed by the process
+	//consumed by the process
 	else {
 		ptr->size = ptr->size - value;
 		if (ptr->size == 0) {
