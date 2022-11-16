@@ -5,23 +5,10 @@
 
 #pragma warning(disable:4996)
 
-typedef struct {
-	int day;
-	int month;
-	int year;
-} Date;
-
-typedef struct {
-	char* surname;
-	char* name;
-	char* patronymic;
-} Profile;
-
-typedef struct {
-	Profile* profile;
-	Date* date;
-	struct List* next;
-} List;
+int SymbolCheck(char c) {
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) return 1;
+	return 0;
+}
 
 int CompareStructures(Date* date_current, Date* date_next) {
 	int pointer = 0;
@@ -72,14 +59,9 @@ void PrintListComplited(List* list) {
 	else {
 		while (list != NULL) {
 			PrintListField(list);
-			list = list->next;
+			(List*)list = (List*)list->next;
 		}
 	}
-}
-
-int SymbolCheck(char c) {
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) return 1;
-	return 0;
 }
 
 void InsertListField(Profile* profile, Date* date, List** inp) {
@@ -100,16 +82,16 @@ void InsertListField(Profile* profile, Date* date, List** inp) {
 	while (cur != NULL && (CompareStructures(date, cur->date) == -1))
 	{
 		prev = cur;
-		cur = cur->next;
+		(List*)cur = (List*)cur->next;
 	}
 
 	if (prev == NULL) {
-		new->next = *inp;
+		(List*)new->next = (List*)*inp;
 		*inp = new;
 	}
 	else {
-		prev->next = new;
-		new->next = cur;
+		(List*)prev->next = (List*)new;
+		(List*)new->next = (List*)cur;
 	}
 }
 
@@ -176,7 +158,7 @@ List* AlterationListFromFile(char const* filename, int board) {
 				str[length - 1] = temp;
 			}
 			else {
-				if (SymbolCheck(str[0]) == 1) { //åñëè âñòðå÷àåò êîíåö ñòîêè '\n', íå ñ÷èòûâàåò åãî êàê ôàìèëèþ, à âîçâðàùàåòñÿ â öèêë è ñ÷èòûâàåò ïåðâóþ áóêâó ñî ñëåäóþùåé ñòðî÷êè
+				if (SymbolCheck(str[0]) == 1) { //ÐµÑÐ»Ð¸ Ð²ÑÑ‚Ñ€ÐµÑ‡Ð°ÐµÑ‚ ÐºÐ¾Ð½ÐµÑ† ÑÑ‚Ð¾ÐºÐ¸ '\n', Ð½Ðµ ÑÑ‡Ð¸Ñ‚Ñ‹Ð²Ð°ÐµÑ‚ ÐµÐ³Ð¾ ÐºÐ°Ðº Ñ„Ð°Ð¼Ð¸Ð»Ð¸ÑŽ, Ð° Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ÑÑ Ð² Ñ†Ð¸ÐºÐ» Ð¸ ÑÑ‡Ð¸Ñ‚Ñ‹Ð²Ð°ÐµÑ‚ Ð¿ÐµÑ€Ð²ÑƒÑŽ Ð±ÑƒÐºÐ²Ñƒ ÑÐ¾ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÐµÐ¹ ÑÑ‚Ñ€Ð¾Ñ‡ÐºÐ¸
 					length++;
 
 					char* str_temp = (char*)realloc(str, length * sizeof(char));
@@ -204,7 +186,7 @@ List* AlterationListFromFile(char const* filename, int board) {
 				}
 			}
 		}
-		fscanf_s(file, "%i %i %i", &date->day, &date->month, &date->year);
+		if (!fscanf(file, "%i %i %i", &date->day, &date->month, &date->year)) exit(1);
 		InsertListField(profile, date, &list);
 	}
 	fclose(file);
@@ -219,7 +201,7 @@ void CheckDate(List* list, Date* input_date) {
 			if (count == 1) printf("\ncoincidences\n");
 			PrintListField(list);
 		}
-		list = list->next;
+		(List*)list = (List*)list->next;
 	}
 	printf("\nnumber of coincidences: %i\n", count);
 }
