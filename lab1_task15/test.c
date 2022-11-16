@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "./main.c"
+#include "./main.h"
 
 void printItem(char* word) {
   printf("%s\n", word);
