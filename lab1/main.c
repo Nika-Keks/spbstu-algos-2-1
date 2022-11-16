@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "list.c"
+#include "list.h"
 
 // Чтение файла и сортировка
 Node* Read_file(char const *fileName) {
