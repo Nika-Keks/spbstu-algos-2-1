@@ -95,44 +95,37 @@ void Print(char* a, int n) {
 ListNodePtr ReadText(char const* filename) {
 	ListNodePtr StartPtr = NULL;
 	FILE* f;
-	int length = 0;
-	char* a = NULL;
-	char t;
+	int length = 0;//string length
+	char a[4000];//two buffers for reading from a file
+	char b[4000];
+	int j = 0;//word length counter
 	f = fopen(filename, "r+");
 	if (f != NULL) {//if it was possible to open the file
-		a = (char*)malloc(sizeof(char));
-		if (a != NULL) {//if memory is allocated
-			while (fscanf(f, "%c", &t) == 1) {
-				if (IsAlNum(t)) {//if the symbol is a letter
-					length++;
-					char* p = (char*)realloc(a, length * sizeof(char));
-					if (p == NULL) {
-						return NULL;
-					}
-					a = p;
-					a[length - 1] = t;
+		while (fgets(a, 4000, f)) {
+			length = strlen(a);
+			for (int i = 0; i < length; i++) {
+				if (IsAlNum(a[i])) {//if the character is not a separator
+					b[j] = a[i];
+					j++;
 				}
 				else {
-					if (IsAlNum(a[0])) {//if the symbol is a separator, it checks whether we can insert a word into the node
-						insert(&StartPtr, a, length);
-						length = 0;
-						a = (char*)malloc(sizeof(char));
-
-						if (a == NULL) {
-							return NULL;
-						}
+					if (j != 0) {
+						char* word = (char*)malloc(j * sizeof(char));
+						strncpy(word, b, j);
+						insert(&StartPtr, word, j);
+						j = 0;
 					}
 				}
 			}
-			if (IsAlNum(a[0])) {//if there are no separators, then you need to register a separate check
-				insert(&StartPtr, a, length);
-				length = 0;
-				a = (char*)malloc(sizeof(char));
-
-				if (a == NULL) {
-					return NULL;
+			if (j != 0) {//if there is a word at the end that needs to be written to the list
+				char* word = (char*)malloc(j * sizeof(char));
+				if (word != NULL) {
+					strncpy(word, b, j);
+					insert(&StartPtr, word, j);
+					j = 0;
 				}
 			}
+			j = 0;
 		}
 		fclose(f);
 	}
