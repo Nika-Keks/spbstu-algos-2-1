@@ -38,5 +38,3 @@ void second(ListNodePtr currentPtr, int N);
 
 /*performs character-by-character reading from a file*/
 ListNodePtr ReadText(char const* filename);
-
-#pragma once
