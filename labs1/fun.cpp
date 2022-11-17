@@ -1,6 +1,7 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include<locale.h>
+#include<string.h>
 #pragma warning(disable:4996)
 #include "Header.h"
 
