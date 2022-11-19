@@ -5,9 +5,9 @@
 #pragma warning(disable:4996)
 
 
-//функция вставляет элемент в дерево 
-//дерево реализовано как двоичное дерево поиска
-//поэтому если элемент меньше предка то он отправляется в левый узел
+//the function inserts an element into the tree
+//the tree is implemented as a binary search tree
+//so if the element is smaller than the ancestor, it is sent to the left node
 void InsertNode(TreeNodePtr* TreePtr, int value) {
 
 	if (*TreePtr == NULL) {
@@ -34,10 +34,10 @@ void InsertNode(TreeNodePtr* TreePtr, int value) {
 }
 
 /*
-Функция preOrder выполняет обход в три этапа :
-1) обрабатывает значение узла;
-2) вызывает preOrder для обхода левого поддерева;
-3) вызывает preOrder для обхода правого поддерева;
+The Pre Order function performs a crawl in three stages :
+1) processes the node value;
+2) calls preOrder to traverse the left subtree;
+3) calls preOrder to traverse the right subtree;
 */
 void Preorder(TreeNodePtr TreePtr) {
 	if (TreePtr != NULL) {
@@ -48,11 +48,11 @@ void Preorder(TreeNodePtr TreePtr) {
 }
 
 /*
-Функция preOrder2 выполняет обход в три этапа :
-1) обрабатывает значение узла;
-2) вызывает preOrder для обхода левого поддерева;
-3) вызывает preOrder для обхода правого поддерева;
-она выводит количество листьев для каждого узла 
+The pre Order 2 function performs a three-step crawl :
+1) processes the node value;
+2) calls preOrder to traverse the left subtree;
+3) calls preOrder to traverse the right subtree;
+it outputs the number of leaves for each node
 */
 void Preorder2(TreeNodePtr TreePtr) {
 	if (TreePtr != NULL) {
@@ -62,7 +62,7 @@ void Preorder2(TreeNodePtr TreePtr) {
 	}
 }
 
-//функция рекурсивно считает количество листьев для каждого узла
+//the function recursively counts the number of leaves for each node
 int leafSum(TreeNodePtr TreePtr) {
 	if (TreePtr == NULL) {
 		return 0;
@@ -77,9 +77,8 @@ int leafSum(TreeNodePtr TreePtr) {
 	}
 }
 
-
-//функция заполняет матрицу размер которой равен наибольшему значению из всех
-//которые мы могли бы получить используя rand()
+//the function fills in a matrix whose size is equal to the largest value of all
+//that we could get using rand()
 //mas[i][j] = 1 if i is ancestor of j
 //mas[i][j] = 0, otherwise
 
@@ -98,7 +97,7 @@ int ancestorMatrixRec(TreeNodePtr TreePtr, int mas[][Inf])
 	return TreePtr->data;
 }
 
-//функция выводит матрицу предков
+//the function outputs the ancestral matrix
 void ancestorMatrix(TreeNodePtr TreePtr, int mas[][Inf])
 {
 	for (int i = 0; i < Inf; i++)
