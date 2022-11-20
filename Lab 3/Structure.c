@@ -172,11 +172,12 @@ void Rasterize(List* apex)
 	List* head0 = apex;
 	List* head1 = apex;
 	List* head2; List* head3;
-	int pl = abs(roundermax(Rangey(head1)->x));//diplacement
+	int py = abs(roundermax(Rangey(head1)->x));//diplacement on y
 	head1 = head0;
-	int n = abs(roundermax(Rangey(head1)->y)) - pl;//height
+	int n = abs(roundermax(Rangey(head1)->y)) - py;//height
 	head1 = head0;
-	int m = abs(roundermax(Rangex(head1)->y)) - abs(roundermax(Rangex(head1)->x));//wide
+	int px = abs(roundermax(Rangex(head1)->x));//diplacement on x
+	int m = abs(roundermax(Rangex(head1)->y)) -px ;//wide
 	head1 = head0;
 	Point* a1 = head1->point;//first apex
 	Point* a0 = a1;
@@ -205,18 +206,18 @@ void Rasterize(List* apex)
 	do
 	{
 		head1 = head1->next;
-		a2 = head1->point;//second apex of σβοσ
+		a2 = head1->point;//second apex of ΡƒΠ²ΠΏΡƒ
 		for (i = 0;i <= n;i++)//searching sections with all avaliable horizontal lines
 		{
-			if ((a1->y >= i + pl && i + pl >= a2->y) || (a1->y <= i + pl && i + pl <= a2->y))
+			if ((a1->y >= i + py && i + py >= a2->y) || (a1->y <= i + py && i + py <= a2->y))
 			{
 				if (counter == 0)//for the first edge
 				{
-					mass[i] = NewList(Dot(i+pl, a1, a2));
+					mass[i] = NewList(Dot(i+py, a1, a2));
 				}
 				else//futher edges
 				{
-					PushBack(mass[i], Dot(i + pl, a1, a2));
+					PushBack(mass[i], Dot(i + py, a1, a2));
 				}
 			}
 			else
@@ -242,8 +243,6 @@ void Rasterize(List* apex)
 				j = 0;
 				x1 = (head2->point->x);
 				x2 = (head3->point->x);				
-				x1 -= pl;
-				x2 -= pl;
 				if (head2->point != zerosp && head3->point != zerosp)//checking the maching with the symbol of absence				
 				{
 					if (a1->x <= x1 && x1 <= a2->x && a1->x <= x2 && x2 <= a2->x )//checking ccontaining section in a range
@@ -256,7 +255,7 @@ void Rasterize(List* apex)
 						}
 						x1 = roundermin(x1);
 						x2 = roundermax(x2);
-						for (j = x1; j < x2;j++)//filling
+						for (j = x1- px; j < x2 - px;j++)//filling
 						{
 							A[i - 1][j] = 1;
 						}
@@ -273,15 +272,15 @@ void Rasterize(List* apex)
 	a1 = a0;
 	for (i = 0;i <= n;i++)
 	{
-		if ((a1->y >= i + pl && i + pl >= a2->y) || (a1->y <= i + pl && i + pl <= a2->y))
+		if ((a1->y >= i + py && i + py >= a2->y) || (a1->y <= i + py && i + py <= a2->y))
 		{
 			if (counter == 0)
 			{
-				mass[i] = NewList(Dot(i + pl, a1, a2));
+				mass[i] = NewList(Dot(i + py, a1, a2));
 			}
 			else
 			{
-				PushBack(mass[i], Dot(i + pl, a1, a2));
+				PushBack(mass[i], Dot(i + py, a1, a2));
 			}
 		}
 		else
@@ -307,8 +306,6 @@ void Rasterize(List* apex)
 			j = 0;
 			x1 = (head2->point->x);
 			x2 = (head3->point->x);
-			x1 -= pl;
-			x2 -= pl;
 			if (head2->point != zerosp && head3->point != zerosp)
 			{	
 				if (a1->x <= x1 && x1 <= a2->x && a1->x <= x2 && x2 <= a2->x)
@@ -321,7 +318,7 @@ void Rasterize(List* apex)
 					}
 					x1 = roundermin(x1);
 					x2 = roundermax(x2);
-					for (j = x1; j <= x2;j++)
+					for (j = x1 - px; j <= x2 - px;j++)
 					{
 						A[i - 1][j] = 1;
 					}
