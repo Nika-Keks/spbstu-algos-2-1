@@ -123,7 +123,6 @@ int roundermin(float a)// getting a round of number with lower abs
 
 Point* Rangey(List* head)//getting a range from y-axis
 {
-
 	float min = head->point->y;
 	float max = head->point->y;
 	head = head->next;
@@ -145,7 +144,21 @@ Point* Rangey(List* head)//getting a range from y-axis
 Point* Rangex(List* head)//getting a range from x-axis
 {
 	float min = head->point->x;
-	float max = GetLast(head)->point->x;
+	float max = head->point->x;
+	head = head->next;
+	while (head != NULL)
+	{
+		if (min > head->point->x)
+		{
+			min = head->point->x;
+		}
+		if (max < head->point->x)
+		{
+			max = head->point->x;
+		}
+		head = head->next;
+	}
+
 	return NewPoint((float)roundermax(min), (float)roundermax(max));
 }
 
@@ -245,7 +258,8 @@ void Rasterize(List* apex)
 				x2 = (head3->point->x);				
 				if (head2->point != zerosp && head3->point != zerosp)//checking the maching with the symbol of absence				
 				{
-					if (a1->x <= x1 && x1 <= a2->x && a1->x <= x2 && x2 <= a2->x )//checking ccontaining section in a range
+					if (((a1->x <= x1 && x1 <= a2->x) || (a1->x >= x1 && x1 >= a2->x)) && 
+						((a1->x <= x2 && x2 <= a2->x) || (a1->x >= x2 && x2 >= a2->x)))//checking ccontaining section in a range
 					{
 						if (x2 < x1)//changing order
 						{
@@ -261,7 +275,6 @@ void Rasterize(List* apex)
 						}
 					}
 				}
-				
 			}
 		}	
 		a1 = a2;
@@ -318,7 +331,7 @@ void Rasterize(List* apex)
 					}
 					x1 = roundermin(x1);
 					x2 = roundermax(x2);
-					for (j = x1 - px; j <= x2 - px;j++)
+					for (j = x1 - px; j < x2 - px;j++)
 					{
 						A[i - 1][j] = 1;
 					}
