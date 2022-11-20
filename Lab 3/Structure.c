@@ -321,7 +321,8 @@ void Rasterize(List* apex)
 			x2 = (head3->point->x);
 			if (head2->point != zerosp && head3->point != zerosp)
 			{	
-				if (a1->x <= x1 && x1 <= a2->x && a1->x <= x2 && x2 <= a2->x)
+				if (((a1->x <= x1 && x1 <= a2->x) || (a1->x >= x1 && x1 >= a2->x)) &&
+					((a1->x <= x2 && x2 <= a2->x) || (a1->x >= x2 && x2 >= a2->x)))
 				{
 					if (x2 < x1)
 					{
