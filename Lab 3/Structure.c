@@ -219,7 +219,7 @@ void Rasterize(List* apex)
 	do
 	{
 		head1 = head1->next;
-		a2 = head1->point;//second apex of σβοσ
+		a2 = head1->point;//second apex of ΡƒΠ²ΠΏΡƒ
 		for (i = 0;i <= n;i++)//searching sections with all avaliable horizontal lines
 		{
 			if ((a1->y >= i + py && i + py >= a2->y) || (a1->y <= i + py && i + py <= a2->y))
