@@ -33,4 +33,4 @@ position find_n(list** mass, list* list_n, int n);
 void clear_listandchar(list* list_n);
 void sort_M(char* mass_char, int n);
 void print_to_FILE(list** mass, char* file_name, int n);
-void print_str_to_File(list* list_n, char* file_name);
+void print_str_to_File(list* list_n, list* file_name);
