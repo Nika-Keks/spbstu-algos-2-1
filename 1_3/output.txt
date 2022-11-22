@@ -1,0 +1,16 @@
+Nikitin Nikita Nicitich 10 12 1937
+Victorov Victor Victorovich 11 12 1937
+Denisov Denis Denisovich 30 11 1997
+Andreev Andrey Andreevich 31 7 2002
+Ivanov Ivan Ivanovich 31 7 2002
+
+coincidence check
+put the day: 31
+put the month: 7
+put the year: 2002
+
+coincidences
+Andreev Andrey Andreevich 31 7 2002
+Ivanov Ivan Ivanovich 31 7 2002
+
+number of coincidences: 2
