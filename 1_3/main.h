@@ -25,10 +25,10 @@ typedef struct Profile {
 * структура, представляет собой поле списка
 * содержит в себе структуру с ФИО, структуру с полной датой рождения и указатель на следующее поле списка типа List*
 **/
-typedef struct List {
+typedef struct List_t {
 	Profile* profile;
 	Date* date;
-	struct List* next;
+	struct List_t* next;
 } List;
 
 /**
