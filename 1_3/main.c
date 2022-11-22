@@ -82,16 +82,16 @@ void InsertListField(Profile* profile, Date* date, List** inp) {
 	while (cur != NULL && (CompareStructures(date, cur->date) == -1))
 	{
 		prev = cur;
-		(List*)cur = (List*)cur->next;
+		cur = cur->next;
 	}
 
 	if (prev == NULL) {
-		(List*)new->next = (List*)*inp;
+		new->next = *inp;
 		*inp = new;
 	}
 	else {
-		(List*)prev->next = (List*)new;
-		(List*)new->next = (List*)cur;
+		prev->next = new;
+		new->next = cur;
 	}
 }
 
@@ -201,7 +201,7 @@ void CheckDate(List* list, Date* input_date) {
 			if (count == 1) printf("\ncoincidences\n");
 			PrintListField(list);
 		}
-		(List*)list = (List*)list->next;
+		list = list->next;
 	}
 	printf("\nnumber of coincidences: %i\n", count);
 }
