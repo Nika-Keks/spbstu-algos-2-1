@@ -12,10 +12,10 @@ int main(void)
 	  1       3
 	   \     /  \
 	    2   4    5
-		  /	  \
-	     7     6
-	    /
-       8
+		   /	\
+	          7     6
+	        /
+              8
 	*/
 	Node* node0 = NewNode();
 	Node* node1 = NewNode();
