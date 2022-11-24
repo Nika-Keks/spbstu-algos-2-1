@@ -19,7 +19,7 @@ int Max_int(int a, int b) {
 Polinom* Polynom_parse(char* string) {
   //Создаем новый пустой полином, который получится в результате
   Polinom* polynom = malloc(sizeof(Polinom));
-  polynom->numbers = malloc(0);
+  polynom->numbers = malloc(sizeof(int));
   polynom->length = -1;
   while (*string) {
     if (Is_number(*string) || ((*string == '-' || *string == '+') && Is_number(*(string+1)))) {
