@@ -11,13 +11,13 @@ int main(void) {
 
 	int *arr = ReadText("file.txt", &sum, &N);
 
-	int* answer = (int*)calloc(N ,sizeof(int));
+	int* answer = (int*)calloc(N ,sizeof(int));//filling the auxiliary array with zeros
 	
 	
-	if (SearchSet(arr, answer, N-1, sum, &main_key)) {
+	if (SearchSet(arr, answer, N-1, sum, &main_key)) {//if it was possible to find a subsequence, write it to a file
 		WriteText("file2.txt", answer, N);
 	}
-	else {
+	else {//otherwise, we write zero to the file
 		FILE* f;
 		f = fopen("file2.txt", "w");
 		if (f == NULL) return;
