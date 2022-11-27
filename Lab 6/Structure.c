@@ -38,7 +38,7 @@ void Tree_Print(Node* node, int n)// output the whole tree by root
 	}
 }
 
-Node* Min_Node(Node* node)
+Node* Min_Node(Node* node)//search minimum node
 {
 	Node* node1  = node;
 	if (node1 != NULL)
@@ -55,7 +55,7 @@ Node* Min_Node(Node* node)
 			Min_Node(node1->left);
 	}
 }
-void Push_Node(Node* node)
+void Push_Node(Node* node)// adding new node
 {
 	Node* node1 = node;
 	Node* node2 = NULL;
@@ -65,7 +65,7 @@ void Push_Node(Node* node)
 		node1->left = node2;
 }
 
-void Change_Values(Node* node)
+void Change_Values(Node* node)// changing values
 {
 	Node* node1 = node;
 	if (node1 != NULL)
@@ -77,7 +77,7 @@ void Change_Values(Node* node)
 }
 
 
-Node* DeleteNode(Node* node, int n) 
+Node* DeleteNode(Node* node, int n) // delete node
 {
 	if (node == NULL)
 		return node;
