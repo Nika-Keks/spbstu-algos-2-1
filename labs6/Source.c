@@ -7,36 +7,35 @@
 int main(void) {
 	int choice;
 	int value;
-	TreeNodePtr* tmp = NULL;//double pointer to the value we want to remove from the tree
-	TreeNodePtr rootPtr = NULL;//root node
-	printf("printf 1 if you want to add value,\n");
-	printf("printf 2 if you want to delete value, and 3 to finish.\n");
+	TreeNodePtr tmp = NULL;//a pointer to the node containing the value we want to delete
+	TreeNodePtr rootPtr = NULL;
+	printf("Enter 1 to add a value.\n");
+	printf("Enter 2 to delete a value.\n");
+	printf("Enter 3 to finish.\n");
 	printf("%s", "? ");
-	scanf("%d", &choice);
+	scanf_s("%d", &choice);
 	while (choice != 3) {
 		switch (choice) {
 		case 1:
 			printf("%s", "Enter a value: ");
-			scanf("\n%d", &value);
+			scanf_s("\n%d", &value);
 			InsertNode(&rootPtr, value);
-			puts("the tree is:");
 			preOrder(rootPtr);
 			puts("");
 			break;
 		case 2:
 			if (!isEmpty(rootPtr)) {
 				printf("%s", "Enter character to be deleted: ");
-				scanf("\n%d", &value);
-				Search(&rootPtr, value, &tmp);
+				scanf_s("\n%d", &value);
+				Search(rootPtr, value, &tmp);
 				if (tmp) {
-					Delete(tmp, tmp);
+					Delete(&rootPtr, &tmp);
 					printf("%d deleted.\n", value);
 					tmp = NULL;
 				}
 				else {
 					printf("%d not found.\n\n", value);
 				}
-				puts("the tree is:");
 				preOrder(rootPtr);
 				printf("\n");
 			}
@@ -49,7 +48,8 @@ int main(void) {
 			break;
 		}
 		printf("%s", "? ");
-		scanf("%d", &choice);
+		scanf_s("%d", &choice);
 	}
 	return 0;
 }
+
