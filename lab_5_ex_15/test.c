@@ -1,6 +1,10 @@
 #include "main.c"
+#include <locale.h>
 
 int main() {
+
+  setlocale(LC_CTYPE, "Russian");
+
   int root_value = Get_node_value();
   Node* tree = Tree_create_node(root_value, NULL, NULL, NULL);
 

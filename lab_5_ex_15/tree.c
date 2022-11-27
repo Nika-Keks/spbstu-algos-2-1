@@ -1,14 +1,7 @@
 #include <stdlib.h>
+#include "tree.h"
 
 int id = 0;
-
-typedef struct Node {
-  int id;
-  int value;
-	struct Node* parent;
-	struct Node* leftChild;
-	struct Node* rightChild;
-} Node;
 
 Node* Tree_create_node(int value, Node* parent, Node* leftChild, Node* rightChild) {
   Node* root = malloc(sizeof(Node));
