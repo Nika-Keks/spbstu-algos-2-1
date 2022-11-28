@@ -48,5 +48,5 @@ int main(void)
 	printf("--------------------\n");
 	Nodes_Tree_Print(node0, Tree_Height(node0));
 	printf("\nOutput every node with only child nodes\n");
-	Nodes_Only_Print(node0, Tree_Height(node0));
+	Nodes_Only_Print(node0);
 }
