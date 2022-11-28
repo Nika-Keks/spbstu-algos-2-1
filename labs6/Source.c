@@ -13,12 +13,12 @@ int main(void) {
 	printf("Enter 2 to delete a value.\n");
 	printf("Enter 3 to finish.\n");
 	printf("%s", "? ");
-	scanf_s("%d", &choice);
+	scanf("%d", &choice);
 	while (choice != 3) {
 		switch (choice) {
 		case 1:
 			printf("%s", "Enter a value: ");
-			scanf_s("\n%d", &value);
+			scanf("\n%d", &value);
 			InsertNode(&rootPtr, value);
 			preOrder(rootPtr);
 			puts("");
@@ -26,7 +26,7 @@ int main(void) {
 		case 2:
 			if (!isEmpty(rootPtr)) {
 				printf("%s", "Enter character to be deleted: ");
-				scanf_s("\n%d", &value);
+				scanf("\n%d", &value);
 				Search(rootPtr, value, &tmp);
 				if (tmp) {
 					Delete(&rootPtr, &tmp);
@@ -48,7 +48,7 @@ int main(void) {
 			break;
 		}
 		printf("%s", "? ");
-		scanf_s("%d", &choice);
+		scanf("%d", &choice);
 	}
 	return 0;
 }
