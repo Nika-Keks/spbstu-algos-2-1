@@ -70,3 +70,27 @@ void Nodes_Tree_Print(Node* node, int n)//output every node
 	}
 }
 
+void Nodes_Only_Print(Node* node)//output every node only with child nodes
+{
+	Node* node1 = node;
+	if (node1)
+	{
+		if (node1->right)
+		{
+			for (int i = 0; i < 3; i++)
+				printf(" ");			
+			printf("%d\n", node1->right->number);			
+		}
+		printf("%d\n", node1->number);
+		if (node1->left)
+		{
+			for (int i = 0; i < 3; i++)
+				printf(" ");
+			printf("%d\n", node1->left->number);	
+		}
+		printf("--------------------\n");
+		Nodes_Only_Print(node1->left);
+		Nodes_Only_Print(node1->right);
+
+	}
+}
