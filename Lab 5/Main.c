@@ -12,10 +12,10 @@ int main(void)
 	  1       3
 	   \     /  \
 	    2   4    5
-		   /	\
-	          7     6
-	        /
-              8
+		  /	  \
+	     7     6
+	    /
+       8
 	*/
 	Node* node0 = NewNode();
 	Node* node1 = NewNode();
@@ -47,4 +47,6 @@ int main(void)
 	printf("\nFuther output represents nodes with every child-tree :\n");
 	printf("--------------------\n");
 	Nodes_Tree_Print(node0, Tree_Height(node0));
+	printf("\nOutput every node with only child nodes\n");
+	Nodes_Only_Print(node0, Tree_Height(node0));
 }
