@@ -47,7 +47,7 @@ int* ReadText(char const* filename, int* B, int* N) {
 	if (fscanf(f, "%d%d", B, N) != 2) return NULL;
 	int* arr = (int*)malloc(sizeof(int) * (*N));
 	if (arr == NULL) return NULL;
-	for (int i = 0; i < *N; i++) fscanf_s(f, "%d ", &arr[i]);
+	for (int i = 0; i < *N; i++) fscanf(f, "%d ", &arr[i]);
 	fclose(f);
 	return arr;
 }
