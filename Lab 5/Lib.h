@@ -11,3 +11,4 @@ int Tree_Height(Node* node);// getting the height of the tree
 void Tree_Print(Node* node, int n);// output the whole tree by root
 void Nodes_Print(Node* node, int n);//output branhces of the node
 void Nodes_Tree_Print(Node* node, int n);//output every node
+void Nodes_Only_Print(Node* node);//output every node only with child nodes
