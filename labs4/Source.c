@@ -20,7 +20,7 @@ int main(void) {
 	else {//otherwise, we write zero to the file
 		FILE* f;
 		f = fopen("file2.txt", "w");
-		if (f == NULL) return;
+		if (f == NULL) return 0;
 		fprintf(f, "%d", 0);
 		fclose(f);
 	}
