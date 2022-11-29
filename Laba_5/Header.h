@@ -2,6 +2,7 @@
 
 typedef struct _tree {
 	int number;
+	int width;
 	struct _tree* left;
 	struct _tree* right;
 }tree;

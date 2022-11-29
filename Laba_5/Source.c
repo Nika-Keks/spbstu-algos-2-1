@@ -1,6 +1,7 @@
 #pragma warning(disable : 4996)
 #include <stdio.h>
-#include <malloc.h>
+#include <stdlib.h>
+#include <math.h>
 #include "header.h"
 
 
@@ -46,14 +47,10 @@ void ReadMassiv(char* filename, int* Massiv, int N) //scan data from txt file to
 {
 	FILE* fin;
 	fin = fopen(filename, "r");
-	int a, b, c;
-	int i = 0;
-	for (i; i < N; i++) {
+	for (int i = 0; i < N; i++) {
 		int a;
 		fscanf(fin, "%d ", &a);
-		int* b;
-		b = a;
-		Massiv[i] = b;
+		Massiv[i] = a;
 	}
 	fclose(fin);
 }
@@ -65,7 +62,7 @@ tree* ReadTree(char* filename, int* Massiv, int* i) //write data from Massiv to 
 	p_l = Massiv[*i + 1];
 	p_r = Massiv[*i + 2];
 	tree* t;
-	t = (tree*)malloc(sizeof(tree));
+	t = malloc(sizeof(tree));
 	t->number = p;
 	t->left = NULL;
 	t->right = NULL;
@@ -88,25 +85,14 @@ tree* ReadTree(char* filename, int* Massiv, int* i) //write data from Massiv to 
 int** fill_array(int f, int high) //create array and fill it with "-1"
 {
 	high = high * 2; //we need to write matrix and height in this massiv
-	int** Massiv = (int*)malloc(high * sizeof(int));
+	int** Massiv = malloc(high * sizeof(int*));
 	for (int i = 0; i < high; i++) {
-		Massiv[i] = (int*)malloc(f * sizeof(int));
+		Massiv[i] = malloc(f * sizeof(int));
 		for (int y = 0; y < f; y++) {
 			Massiv[i][y] = -1;
 		}
 	}
 	return Massiv;
-}
-
-
-void PrintTree(int** Massiv, tree* Res, int y, int* x) //nodes and heights of nodes are written to an array
-{
-	if (Res->left != NULL) PrintTree(Massiv, Res->left, y +1, x);
-	Massiv[y * 2 + 1][*x] = abs(Tree_Height(Res->left)- Tree_Height(Res->right));
-	Massiv[y * 2][*x] = Res->number;
-	*x = *x + 1;
-	if (Res->right != NULL) PrintTree(Massiv, Res->right, y+1 , x);
-
 }
 
 int Tree_Height(tree* tr) // count height of tree
@@ -121,6 +107,18 @@ int Tree_Height(tree* tr) // count height of tree
 	}
 	return 0;
 }
+
+void PrintTree(int** Massiv, tree* Res, int y, int* x) //nodes and heights of nodes are written to an array
+{
+	if (Res->left != NULL) PrintTree(Massiv, Res->left, y +1, x);
+	Massiv[y * 2 + 1][*x] = abs(Tree_Height(Res->left)- Tree_Height(Res->right));
+	Massiv[y * 2][*x] = Res->number;
+	*x = *x + 1;
+	if (Res->right != NULL) PrintTree(Massiv, Res->right, y+1 , x);
+
+}
+
+
 
 void Print_Massiv(int** Massiv, int columns, int lines) //print array in console
 {
