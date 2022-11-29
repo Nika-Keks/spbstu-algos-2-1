@@ -59,7 +59,7 @@ void PrintListComplited(List* list) {
 	else {
 		while (list != NULL) {
 			PrintListField(list);
-			(List*)list = (List*)list->next;
+			list = list->next;
 		}
 	}
 }
