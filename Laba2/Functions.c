@@ -130,7 +130,7 @@ void Insert(List list, int idx, void* memory, int size) {
 
 // best fit memory allocation
 void BestFit(List list, int bytes) {
-    int MIN = INT_MAX;
+    int MIN = 2147483647;
     Node_ptr best = NULL;
     Node_ptr cur = list->head;
     while (cur) {
