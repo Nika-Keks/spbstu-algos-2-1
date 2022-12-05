@@ -11,7 +11,6 @@ int Check_cell(int x, int y)
 
 void printSolution(int sol[N][N])
 {
-    setlocale(LC_ALL, "Rus");
     printf(" 0 - start position\n");
     for (int x = 0; x < N; x++)
     {
@@ -63,7 +62,6 @@ int Min_Steps_Count_To_Reach_Target(int knight_pos_x, int knight_pos_y, int targ
        
         if (temp_next.x == target_pos_x && temp_next.y == target_pos_y)
         {
-            setlocale(LC_ALL, "Rus");
 
             printf("Minimum number of moves: %d\n\n", temp_next.dist);
             return temp_next.dist;
