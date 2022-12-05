@@ -1,4 +1,4 @@
-#include "main.c"
+#include "main.h"
 #include <locale.h>
 
 int main() {

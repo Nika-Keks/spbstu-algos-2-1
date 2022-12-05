@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include "list.h"
 
 //Создание нового списка
 Node* List_create() {

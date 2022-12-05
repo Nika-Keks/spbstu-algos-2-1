@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
-#include "tree.c"
+#include "tree.h"
 
 void Find_node_by_id_rec(Node* node, int id, Node** found_node) {
   if (*found_node || !node) {

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
-#include "tree.c"
+#include "tree.h"
 
 int Get_number_length(int number) {
   int length = 1;
