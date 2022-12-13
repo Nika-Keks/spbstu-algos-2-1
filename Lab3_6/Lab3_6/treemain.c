@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 #include "tree.h"
 
 #pragma warning(disable:4996)
@@ -42,6 +43,7 @@ int main() {
 	);
 	printf("New tree: \n");
 	nodePrint(node, 0);
+	printf("Attention: removing a non-existing node will crash your program.\n");
 	printf("Point to remove: ");
 	scanf("%lf %lf %lf", &x, &y, &z);
 	nodeRemove(

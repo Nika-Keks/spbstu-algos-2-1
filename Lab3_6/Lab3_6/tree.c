@@ -72,14 +72,16 @@ void nodeDestroy(Node* node) {
 }
 
 void nodePrint(Node* node, int octant) {
-	for (int i = 0; i < node->depth; i++) {
-		printf("  ");
-	}
-	printf("In %i octant: ", octant);
-	pointPrint(node->point);
-	for (int i = 0; i < CHILDREN_COUNT; i++) {
-		if (node->children[i] != NULL) {
-			nodePrint(node->children[i], i + 1);
+	if (node != NULL) {
+		for (int i = 0; i < node->depth; i++) {
+			printf("  ");
+		}
+		printf("In %i octant: ", octant);
+		pointPrint(node->point);
+		for (int i = 0; i < CHILDREN_COUNT; i++) {
+			if (node->children[i] != NULL) {
+				nodePrint(node->children[i], i + 1);
+			}
 		}
 	}
 }
