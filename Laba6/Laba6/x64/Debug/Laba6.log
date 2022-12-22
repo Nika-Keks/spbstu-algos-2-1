@@ -1,0 +1,79 @@
+﻿  binaryTree.c
+C:\Users\Artemiy\source\repos\Laba6\Laba6\binaryTree.c(16,16): warning C4244: return: преобразование "double" в "int", возможна потеря данных
+C:\Users\Artemiy\source\repos\Laba6\Laba6\binaryTree.c(35,11): warning C4013: time: нет определения; предполагается "extern" с возвратом типа "int"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\binaryTree.c(49,5): warning C4013: printf: нет определения; предполагается "extern" с возвратом типа "int"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\binaryTree.c(66,12): warning C4013: log10: нет определения; предполагается "extern" с возвратом типа "int"
+  main.c
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(25,21): error C2011: Node: переопределение типа "struct"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\binaryTree.h(3): message : см. объявление "Node"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(34,37): error C2143: синтаксическая ошибка: отсутствие ";" перед "{"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(35,20): error C2065: min: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(35,59): error C2065: max: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(35,64): error C2065: min: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(35,65): warning C4047: return: "Node *" отличается по уровням косвенного обращения от "int"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(42,68): error C2143: синтаксическая ошибка: отсутствие ";" перед "{"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(43,19): error C2065: depth: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(45,95): error C2143: синтаксическая ошибка: отсутствие ";" перед "{"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(46,27): error C2065: node: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(46,27): error C2088: ||: недопустимо для struct
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(47,21): warning C4033: "findNodeByValue" должен возвращать значение
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(51,26): error C2065: side: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(52,80): error C2065: parentValue: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(55,45): error C2065: length: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(56,43): error C2440: =: невозможно преобразовать "Node *" в "Node"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(58,49): error C2065: length: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(59,80): error C2065: length: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(59,92): warning C4047: функция: "Node **" отличается по уровням косвенного обращения от "Node *"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(59,82): warning C4024: findValueWithDifferentOrderUtil: различные типы для формального и фактического параметров 3
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(62,60): error C2065: parentValue: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(63,81): error C2065: length: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(63,93): warning C4047: функция: "Node **" отличается по уровням косвенного обращения от "Node *"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(63,83): warning C4024: findValueWithDifferentOrderUtil: различные типы для формального и фактического параметров 3
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(67,86): error C2143: синтаксическая ошибка: отсутствие ";" перед "{"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(70,89): error C2065: k: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(75,48): error C2143: синтаксическая ошибка: отсутствие ";" перед "{"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(87,64): error C2065: depth: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(88,65): error C2065: depth: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(93,56): error C2143: синтаксическая ошибка: отсутствие ";" перед "{"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(94,27): warning C4244: функция: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(95,32): error C2143: синтаксическая ошибка: отсутствие ";" перед "{"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(102,33): warning C4047: return: "Node *" отличается по уровням косвенного обращения от "int"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(93): fatal  error C1075: "{": не найдена несоответствующая лексема
+  test.c
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(25,21): error C2011: Node: переопределение типа "struct"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\binaryTree.h(3): message : см. объявление "Node"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(34,37): error C2143: синтаксическая ошибка: отсутствие ";" перед "{"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(35,20): error C2065: min: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(35,59): error C2065: max: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(35,64): error C2065: min: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(35,65): warning C4047: return: "Node *" отличается по уровням косвенного обращения от "int"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(42,68): error C2143: синтаксическая ошибка: отсутствие ";" перед "{"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(43,19): error C2065: depth: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(45,95): error C2143: синтаксическая ошибка: отсутствие ";" перед "{"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(46,27): error C2065: node: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(46,27): error C2088: ||: недопустимо для struct
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(47,21): warning C4033: "findNodeByValue" должен возвращать значение
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(51,26): error C2065: side: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(52,80): error C2065: parentValue: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(55,45): error C2065: length: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(56,43): error C2440: =: невозможно преобразовать "Node *" в "Node"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(58,49): error C2065: length: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(59,80): error C2065: length: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(59,92): warning C4047: функция: "Node **" отличается по уровням косвенного обращения от "Node *"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(59,82): warning C4024: findValueWithDifferentOrderUtil: различные типы для формального и фактического параметров 3
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(62,60): error C2065: parentValue: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(63,81): error C2065: length: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(63,93): warning C4047: функция: "Node **" отличается по уровням косвенного обращения от "Node *"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(63,83): warning C4024: findValueWithDifferentOrderUtil: различные типы для формального и фактического параметров 3
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(67,86): error C2143: синтаксическая ошибка: отсутствие ";" перед "{"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(70,89): error C2065: k: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(75,48): error C2143: синтаксическая ошибка: отсутствие ";" перед "{"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(87,64): error C2065: depth: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(88,65): error C2065: depth: необъявленный идентификатор
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(93,56): error C2143: синтаксическая ошибка: отсутствие ";" перед "{"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(94,27): warning C4244: функция: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(95,32): error C2143: синтаксическая ошибка: отсутствие ";" перед "{"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(102,33): warning C4047: return: "Node *" отличается по уровням косвенного обращения от "int"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\test.c(4,12): error C2143: синтаксическая ошибка: отсутствие ";" перед "{"
+C:\Users\Artemiy\source\repos\Laba6\Laba6\main.c(93): fatal  error C1075: "{": не найдена несоответствующая лексема
+  Создание кода...
