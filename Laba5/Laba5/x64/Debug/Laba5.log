@@ -1,0 +1,8 @@
+﻿  fun.c
+C:\Users\Artemiy\source\repos\Laba5\Laba5\fun.c(86,43): warning C4311: приведение типов: усечение указателя из "void *" в "int"
+C:\Users\Artemiy\source\repos\Laba5\Laba5\fun.c(86,43): warning C4047: =: "int *" отличается по уровням косвенного обращения от "int"
+  main.c
+C:\Users\Artemiy\source\repos\Laba5\Laba5\main.c(17,41): warning C4244: функция: преобразование "double" в "int", возможна потеря данных
+C:\Users\Artemiy\source\repos\Laba5\Laba5\main.c(15,32): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+  Создание кода...
+  Laba5.vcxproj -> C:\Users\Artemiy\source\repos\Laba5\x64\Debug\Laba5.exe
