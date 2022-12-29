@@ -11,8 +11,7 @@ int Check_cell(int x, int y)
 
 void printSolution(int sol[N][N])
 {
-    setlocale(LC_ALL, "Rus");
-    printf(" 0 - начальна позици€ фигуры\n -1 - €чейка не задействованна€ при ходе \n последовательность ходов отмечена цифрами в €чейках\n\n");
+    printf(" 0 - start position\n");
     for (int x = 0; x < N; x++)
     {
         for (int y = 0; y < N; y++)
@@ -63,9 +62,8 @@ int Min_Steps_Count_To_Reach_Target(int knight_pos_x, int knight_pos_y, int targ
        
         if (temp_next.x == target_pos_x && temp_next.y == target_pos_y)
         {
-            setlocale(LC_ALL, "Rus");
 
-            printf("ћинимальное число ходов фигуры дл€ достижени€ цели: %d\n\n", temp_next.dist);
+            printf("Minimum number of moves: %d\n\n", temp_next.dist);
             return temp_next.dist;
         }
 
