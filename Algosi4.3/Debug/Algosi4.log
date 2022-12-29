@@ -1,0 +1,6 @@
+﻿  Main.c
+C:\Users\Толик\source\repos\Algosi4\Main.c(75,42): warning C4020: 'Check_cell': too many actual parameters
+C:\Users\Толик\source\repos\Algosi4\Main.c(106,27): warning C4013: 'Find_Shortest_Path' undefined; assuming extern returning int
+C:\Users\Толик\source\repos\Algosi4\Main.c(130,40): warning C4020: 'Check_cell': too many actual parameters
+C:\Users\Толик\source\repos\Algosi4\Main.c(87): warning C4715: 'Min_Steps_Count_To_Reach_Target': not all control paths return a value
+  Algosi4.vcxproj -> C:\Users\Толик\source\repos\Algosi4\Debug\Algosi4.exe
