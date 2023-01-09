@@ -106,7 +106,6 @@ void checkStarts(char* mask)
 
 void _checkStarts(struct Node* n, char* surname, char* name, char* patr)
 {
-	// Если текущий узел пуст
 	if (!n)
 		return;
 	if (startsWith(n->value.surname, surname) && startsWith(n->value.name, name)
