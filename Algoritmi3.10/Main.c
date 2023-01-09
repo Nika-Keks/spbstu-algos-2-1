@@ -22,7 +22,7 @@ int main()
 
     fp = freopen("input.txt", "r", stdin);
     int from = 0, to = 0;
-    while (scanf("%i %i", &from, &to)) { //чтение элемента графа
+    while (scanf("%i %i", &from, &to)) { 
         addEdge(graph, from, to);
         if (getchar() == EOF) {
             break;
@@ -35,7 +35,6 @@ int main()
     return 0;
 }
 
-/*Выделение памяти под эллемент графа*/
 struct node* createNode(int v)
 {
     struct node* newNode = malloc(sizeof(struct node));
@@ -43,7 +42,6 @@ struct node* createNode(int v)
     newNode->next = NULL;
     return newNode;
 }
-/*создание графа*/
 struct Graph* createGraph(int vertices)
 {
     struct Graph* graph = malloc(sizeof(struct Graph));
@@ -57,7 +55,6 @@ struct Graph* createGraph(int vertices)
 
     return graph;
 }
-/*Добавление эллемента*/
 void addEdge(struct Graph* graph, int src, int dest)
 {
     struct node* newNode = createNode(dest);
@@ -68,7 +65,6 @@ void addEdge(struct Graph* graph, int src, int dest)
     newNode->next = graph->adjLists[dest];
     graph->adjLists[dest] = newNode;
 }
-/*вывод графа*/
 void printGraph(struct Graph* graph)
 {
     int v;
