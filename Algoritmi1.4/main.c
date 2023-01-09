@@ -137,7 +137,6 @@ int main()
 	char* mask = malloc(MAX);
 	printf("\nВведите маску поиска в формате \"Ф\" \"И\" \"О\": ");
 	scanf("%[^\n]", mask);
-	// Вывод всех фамилий, соответствующих маске
 	checkStarts(mask);
 
 	return 0;
