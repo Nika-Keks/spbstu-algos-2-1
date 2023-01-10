@@ -4,15 +4,15 @@
 #pragma warning(disable:4996)
 
 /**
- * Структура размера матрицы
+ * Matrix size Structure
  */
 typedef struct sizee_t {
     int stolb;
     int strok;
 } sizee_t;
 /**
- * Структура для списка (где один список - столбик)
- * index - номер сторки элемента
+ * Structure for a list (where one list is a column)
+ * index - the line number of the element
  */
 typedef struct stolbec_t {
     int elem;
@@ -21,8 +21,7 @@ typedef struct stolbec_t {
 } stolbec_t;
 
 /**
- * Функция проверки файла
- * @param ptr - файл
+ * File verification function
  */
 void Error(FILE* ptr) {
     if (ptr == EOF) {
@@ -32,8 +31,7 @@ void Error(FILE* ptr) {
 }
 
 /**
- * Функция создания нулевой головы списка
- * @return - ссылка на голову
+ * The function of creating the zero head of the list
  */
 stolbec_t* create(void) {
     stolbec_t* tmp = (stolbec_t*)malloc(sizeof(stolbec_t));
@@ -44,10 +42,7 @@ stolbec_t* create(void) {
 }
 
 /**
- * Добавление не нулевого элемента в списков
- * @param head - голова списка (столбец)
- * @param value - значение нового элемента
- * @param index - номер строки нового элемента
+ * Adding a non-zero element to lists
  */
 void add_element_vstavka(stolbec_t* head, int value, int index) {
     stolbec_t* begunok = head;
@@ -62,10 +57,7 @@ void add_element_vstavka(stolbec_t* head, int value, int index) {
 }
 
 /**
- * Считывание матрицы из файла
- * @param filename - название файла
- * @param Size - размер матрицы
- * @return - массив списков не нулевых элементов
+ * Reading a matrix from a file
  */
 stolbec_t* ReadFile(char const* filename, sizee_t* Size) {
     FILE* ptr = fopen(filename, "r+");
@@ -89,10 +81,7 @@ stolbec_t* ReadFile(char const* filename, sizee_t* Size) {
 }
 
 /**
- * Поиск элементы с заданной строкой
- * @param head - голова списка (столбец)
- * @param index - заданный номер строки
- * @return - значение элемента в этой строке в этом столбце
+ * Search for items with a given string
  */
 int Poisk(stolbec_t* head, int index) {
     if (head->next == NULL) {
@@ -111,13 +100,7 @@ int Poisk(stolbec_t* head, int index) {
 }
 
 /**
- * Функция произведения двух матриц
- * @param Matrix1 - первая матрица
- * @param Size1 - размер первой матрицы
- * @param Matrix2 - вторая матрица
- * @param Size2 - размер второй матрицы
- * @param Size3 - размер матрицы результата
- * @return - результат произведения (массив списков)
+ * The function of the product of two matrices
  */
 stolbec_t* Multi(stolbec_t* Matrix1, sizee_t Size1, stolbec_t* Matrix2, sizee_t Size2, sizee_t* Size3) {
     Size3->strok = Size1.strok;
@@ -140,9 +123,7 @@ stolbec_t* Multi(stolbec_t* Matrix1, sizee_t Size1, stolbec_t* Matrix2, sizee_t 
 }
 
 /**
- * Дополнительная функция вывода матрицы
- * @param Matrix - массив списков
- * @param Size - размер матрицы
+ * Additional matrix output function
  */
 void Print(stolbec_t* Matrix, sizee_t Size) {
     int a;
